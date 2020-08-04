@@ -1,7 +1,7 @@
 package com.mufic.Final.security;
 
 import com.auth0.jwt.JWT;
-import com.mufic.Final.model.User;
+import com.mufic.Final.domain.User;
 import com.mufic.Final.repositories.UserRepository;
 import com.mufic.Final.security.services.UserPrincipal;
 import org.springframework.security.authentication.AuthenticationManager;

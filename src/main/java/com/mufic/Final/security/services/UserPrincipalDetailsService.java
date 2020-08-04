@@ -1,6 +1,6 @@
 package com.mufic.Final.security.services;
 
-import com.mufic.Final.model.User;
+import com.mufic.Final.domain.User;
 import com.mufic.Final.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

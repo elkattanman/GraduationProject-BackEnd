@@ -1,6 +1,6 @@
 package com.mufic.Final.security.services;
 
-import com.mufic.Final.model.User;
+import com.mufic.Final.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

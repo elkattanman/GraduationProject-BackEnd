@@ -1,6 +1,6 @@
 package com.mufic.Final.repositories;
 
-import com.mufic.Final.model.User;
+import com.mufic.Final.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 

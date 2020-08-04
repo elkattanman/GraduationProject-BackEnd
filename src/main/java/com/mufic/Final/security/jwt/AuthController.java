@@ -1,8 +1,8 @@
 package com.mufic.Final.security.jwt;
 
-import com.mufic.Final.model.ERole;
-import com.mufic.Final.model.Role;
-import com.mufic.Final.model.User;
+import com.mufic.Final.domain.ERole;
+import com.mufic.Final.domain.Role;
+import com.mufic.Final.domain.User;
 import com.mufic.Final.repositories.RoleRepository;
 import com.mufic.Final.repositories.UserRepository;
 import com.mufic.Final.security.jwt.payload.request.LoginRequest;
