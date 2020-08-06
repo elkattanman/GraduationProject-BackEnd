@@ -13,7 +13,7 @@ import java.util.List;
 
 @Mapper
 public abstract class StateMapper {
-    public StateMapper INSTANCE = Mappers.getMapper(StateMapper.class);
+//    public StateMapper INSTANCE = Mappers.getMapper(StateMapper.class);
 
     @Mapping(source = "country.id", target = "country")
     public abstract StateDTO objToDTO(State obj);

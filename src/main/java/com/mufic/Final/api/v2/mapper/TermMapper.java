@@ -13,10 +13,10 @@ import java.util.List;
 
 @Mapper
 public abstract class TermMapper {
-    TermMapper INSTANCE = Mappers.getMapper(TermMapper.class);
+//    TermMapper INSTANCE = Mappers.getMapper(TermMapper.class);
 
 
-    protected abstract TermDTO objToDTO(Term obj);
+    public abstract TermDTO objToDTO(Term obj);
 
     @IterableMapping(elementTargetType = Long.class)
     protected abstract List<Long> maplistToLong(List<CourseInTerm> list);

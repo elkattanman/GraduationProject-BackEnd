@@ -13,7 +13,7 @@ import java.util.List;
 
 @Mapper
 public abstract class ProgramMapper {
-    public ProgramMapper INSTANCE = Mappers.getMapper(ProgramMapper.class);
+//    public ProgramMapper INSTANCE = Mappers.getMapper(ProgramMapper.class);
 
 
     @Mapping(source = "underRequirement.id", target = "underRequirement")

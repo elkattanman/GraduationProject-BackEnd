@@ -15,7 +15,7 @@ import java.util.List;
 
 @Mapper
 public abstract class CourseMapper {
-    CourseMapper INSTANCE = Mappers.getMapper(CourseMapper.class);
+//    CourseMapper INSTANCE = Mappers.getMapper(CourseMapper.class);
 
     @Autowired
     DepartmentRepository departmentRepository;

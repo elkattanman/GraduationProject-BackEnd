@@ -1,11 +1,12 @@
 package com.mufic.Final.api.v2.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class TeachingStaffDTO{
 
-    private int id;
+    private Long id;
 
     private String nameEnglish;
 
@@ -30,5 +31,8 @@ public class TeachingStaffDTO{
     Long user;
 
     int city;
+
+    @JsonProperty("teachingstaff_url")
+    private String teachingStaffUrl;
 
 }

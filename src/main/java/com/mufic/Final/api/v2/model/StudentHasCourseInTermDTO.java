@@ -1,6 +1,7 @@
 package com.mufic.Final.api.v2.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
@@ -26,5 +27,8 @@ public class StudentHasCourseInTermDTO {
     private String grade;
 
     String status;
+
+    @JsonProperty("studenthascourseinterm_url")
+    private String studentHasCourseInTermUrl;
 
 }

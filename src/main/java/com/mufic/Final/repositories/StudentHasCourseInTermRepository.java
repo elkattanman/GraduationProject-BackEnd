@@ -7,5 +7,4 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin
 public interface StudentHasCourseInTermRepository extends JpaRepository<StudentHasCourseInTerm, StudentHasCourseInTermID> {
 
-//    List<StudentHasCourseInTerm> findByStudentHasCourseInTermIDstudentId(Long id);
 }

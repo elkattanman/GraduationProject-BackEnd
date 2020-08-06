@@ -6,8 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
-public interface PrgramLevelMapper {
-    PrgramLevelMapper INSTANCE = Mappers.getMapper(PrgramLevelMapper.class);
+public interface ProgramLevelMapper {
+    ProgramLevelMapper INSTANCE = Mappers.getMapper(ProgramLevelMapper.class);
 
 
     ProgramLevelDTO objToDTO(ProgramLevel obj);

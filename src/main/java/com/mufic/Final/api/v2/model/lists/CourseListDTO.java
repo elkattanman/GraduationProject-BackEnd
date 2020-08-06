@@ -10,5 +10,4 @@ import java.util.List;
 @AllArgsConstructor
 public class CourseListDTO {
     List<CourseDTO> courses;
-
 }

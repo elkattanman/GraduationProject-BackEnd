@@ -52,33 +52,36 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //    }
 
 
+
 //    for MVC Security with jdbc (user, roles, privillage)
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //        http
 //                .authorizeRequests()
-////                .anyRequest().authenticated()
+//                .anyRequest().permitAll()
 //                .antMatchers("/index.html").permitAll()
 //                .antMatchers("/student/profile").authenticated()
-////                .antMatchers("/api/**").hasRole("ADMIN")
-////                .antMatchers("/api/**").hasAnyRole("ADMIN","USER")
+//                .antMatchers("/api/**").hasRole("ADMIN")
+//                .antMatchers("/api/**").hasAnyRole("ADMIN","USER")
 //                .antMatchers("/api/**").hasAnyAuthority("READ_API")
 //                .and()
-////                .formLogin()
-////                .loginPage("/login").permitAll()
+//                .formLogin()
+//                .loginPage("/login").permitAll()
 //                .httpBasic() //remove it if u assign login page
 //                .and()
 //                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/api");
-////                .and().rememberMe().tokenValiditySeconds(2592000);
+//                .and().rememberMe().tokenValiditySeconds(2592000);
 //    }
+*/
 
-    */
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
+/*
 
+ //AWT Security
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -103,7 +106,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .cacheControl(); // disable caching
 
     }
-
+*/
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {

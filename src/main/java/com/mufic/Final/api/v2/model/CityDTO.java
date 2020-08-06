@@ -1,13 +1,14 @@
 package com.mufic.Final.api.v2.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 public class CityDTO{
 
-    private int id;
+    private Long id;
 
     private String name;
 
@@ -26,5 +27,8 @@ public class CityDTO{
     private boolean flag;
 
     private String wikiDataId;
+
+    @JsonProperty("vendor_url")
+    private String cityUrl;
 
 }

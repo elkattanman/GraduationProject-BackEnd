@@ -1,5 +1,6 @@
 package com.mufic.Final.api.v2.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.Date;
@@ -8,7 +9,7 @@ import java.util.Set;
 @Data
 public class UserDTO {
 
-    private int id;
+    private Long id;
 
     private String name;
 
@@ -27,4 +28,7 @@ public class UserDTO {
     private String type; //student or ...
 
     private int tid;
+
+    @JsonProperty("user_url")
+    private String userUrl;
 }

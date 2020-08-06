@@ -1,5 +1,6 @@
 package com.mufic.Final.api.v2.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.Date;
@@ -8,7 +9,7 @@ import java.util.List;
 @Data
 public class TermDTO{
 
-    private int id;
+    private Long id;
 
     private String nameEnglish;
 
@@ -37,5 +38,8 @@ public class TermDTO{
     private Date updateTime;
 
     List<Long> courseInTermList;
+
+    @JsonProperty("term_url")
+    private String termUrl;
 
 }

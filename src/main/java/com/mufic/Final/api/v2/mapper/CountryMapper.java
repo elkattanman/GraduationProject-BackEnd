@@ -12,7 +12,7 @@ import java.util.List;
 
 @Mapper
 public abstract class CountryMapper {
-    public CountryMapper INSTANCE = Mappers.getMapper(CountryMapper.class);
+//    public CountryMapper INSTANCE = Mappers.getMapper(CountryMapper.class);
 
 
     public abstract CountryDTO countryToCountryDTO(Country country);

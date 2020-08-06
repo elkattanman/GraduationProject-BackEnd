@@ -1,5 +1,6 @@
 package com.mufic.Final.api.v2.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.Date;
@@ -7,7 +8,7 @@ import java.util.Date;
 @Data
 public class TransactionDTO{
 
-    private int id;
+    private Long id;
 
     private int student;
 
@@ -20,5 +21,8 @@ public class TransactionDTO{
     private int billNo;
 
     private Date createTime;
+
+    @JsonProperty("Transaction_url")
+    private String transactionUrl;
 
 }

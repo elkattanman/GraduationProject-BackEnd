@@ -11,7 +11,7 @@ import java.util.List;
 
 @Mapper
 public abstract class TeachingStaffMapper {
-    public TeachingStaffMapper INSTANCE = Mappers.getMapper(TeachingStaffMapper.class);
+//    public TeachingStaffMapper INSTANCE = Mappers.getMapper(TeachingStaffMapper.class);
 
 
     @Mapping(source = "city.id", target = "city")

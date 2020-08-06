@@ -16,18 +16,15 @@ import javax.persistence.Table;
 @Builder
 @Entity
 @Table(name = "summer_term_rules")
-public class SummerTermRules {
+public class SummerTermRules extends BaseEntity{
 
-//    @Builder
-/*    public SummerTermRules(PointKey pointKey, int hourMin, int hourMax, int hourSpMin, int hourSpMax) {
-        this.pointKey = pointKey;
-        this.hourMin = hourMin;
-        this.hourMax = hourMax;
-        this.hourSpMin = hourSpMin;
-        this.hourSpMax = hourSpMax;
-    }*/
-    @EmbeddedId
-    private PointKey pointKey;
+
+    @Column(name = "gpa_low")
+    private int gpaLow;
+
+    @Column(name = "gpa_high")
+    private int gpaHigh;
+
 
     @Column(name = "hour_min")
     private int hourMin;

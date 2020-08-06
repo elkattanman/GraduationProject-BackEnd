@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Mapper
 public abstract class UserMapper {
-    public UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+//    public UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
 
 

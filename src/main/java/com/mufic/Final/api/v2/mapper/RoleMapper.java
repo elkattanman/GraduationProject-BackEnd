@@ -12,7 +12,7 @@ import java.util.List;
 
 @Mapper
 public abstract class RoleMapper {
-    public RoleMapper INSTANCE = Mappers.getMapper(RoleMapper.class);
+//    public RoleMapper INSTANCE = Mappers.getMapper(RoleMapper.class);
 
 
     public abstract RoleDTO objToDTO(Role obj);

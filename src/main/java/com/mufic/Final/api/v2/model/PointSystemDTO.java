@@ -1,11 +1,12 @@
 package com.mufic.Final.api.v2.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class PointSystemDTO {
 
-    private int id;
+    private Long id;
 
     private String nameEnglish;
 
@@ -16,4 +17,7 @@ public class PointSystemDTO {
     private int degreeHigh;
 
     private double points;
+
+    @JsonProperty("pointsystem_url")
+    private String pointSystemUrl;
 }

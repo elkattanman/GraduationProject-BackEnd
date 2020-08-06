@@ -1,12 +1,13 @@
 package com.mufic.Final.api.v2.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class StudentInfoDTO {
 
-    private int id;
+    private Long id;
 
     private int student;
 
@@ -16,4 +17,6 @@ public class StudentInfoDTO {
 
     private int gpa2Cnt;
 
+    @JsonProperty("studentinfo_url")
+    private String studentInfoUrl;
 }

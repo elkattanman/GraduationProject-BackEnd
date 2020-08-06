@@ -1,6 +1,7 @@
 package com.mufic.Final.api.v2.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 @Data
 public class ProgramDTO {
 
-    private int id;
+    private Long id;
 
     private String nameEnglish;
 
@@ -19,4 +20,7 @@ public class ProgramDTO {
     int underRequirement;
 
     List<String> courses;
+
+    @JsonProperty("program_url")
+    private String programUrl;
 }

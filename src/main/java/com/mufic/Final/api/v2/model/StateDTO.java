@@ -1,5 +1,6 @@
 package com.mufic.Final.api.v2.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 @Data
 public class StateDTO {
 
-    private int id;
+    private Long id;
 
     String name;
 
@@ -25,6 +26,9 @@ public class StateDTO {
     String wikiDataId;
 
     List<String> cities;
+
+    @JsonProperty("state_url")
+    private String stateUrl;
 
 
 }
