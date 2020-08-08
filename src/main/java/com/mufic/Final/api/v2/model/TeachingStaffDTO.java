@@ -12,8 +12,6 @@ public class TeachingStaffDTO{
 
     private String nameArabic;
 
-    private byte[] img;
-
     String nationality;
 
     String gender;

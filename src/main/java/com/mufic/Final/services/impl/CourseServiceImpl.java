@@ -5,13 +5,16 @@ import com.mufic.Final.api.v2.model.CourseDTO;
 import com.mufic.Final.api.v2.model.lists.CourseListDTO;
 import com.mufic.Final.controllers.v2.CityController;
 import com.mufic.Final.controllers.v2.CourseController;
+import com.mufic.Final.domain.Course;
 import com.mufic.Final.repositories.CourseRepository;
 import com.mufic.Final.services.CourseService;
 import com.mufic.Final.services.ResourceNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class CourseServiceImpl implements CourseService {
 
@@ -48,7 +51,20 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseDTO createNew(CourseDTO courseDTO) {
-        return null;
+
+        Course course=courseMapper.CourseDtoTocourse(courseDTO);
+        log.info(course.toString());
+        return saveAndReturnDTO(course);
+//        return null;
+    }
+    private CourseDTO saveAndReturnDTO(Course course) {
+        Course saved = courseRepository.save(course);
+
+         CourseDTO returnDto= courseMapper.courseToCourseDTO(saved);
+
+        returnDto.setCourseUrl(getUrl(saved.getCode()));
+
+        return returnDto;
     }
 
     @Override

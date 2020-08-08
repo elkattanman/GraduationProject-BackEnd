@@ -11,4 +11,6 @@ public interface SummerTermRulesMapper {
 
 
     SummerTermRulesDTO objToDTO(SummerTermRules obj);
+
+    SummerTermRules dtoToObj(SummerTermRulesDTO summerTermRulesDTO);
 }

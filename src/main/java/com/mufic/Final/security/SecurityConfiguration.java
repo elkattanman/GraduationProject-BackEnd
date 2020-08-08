@@ -79,7 +79,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
-/*
+
 
  //AWT Security
     @Override
@@ -99,14 +99,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/api/courses/**").hasRole("ADMIN")
 //                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated();
-        http.
-                addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http
+                .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         http
                 .headers().frameOptions().sameOrigin() // H2 Console Needs this setting
                 .cacheControl(); // disable caching
 
     }
-*/
+
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {

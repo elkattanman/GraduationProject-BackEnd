@@ -10,7 +10,7 @@ import org.mapstruct.factory.Mappers;
 public interface RegularTermRulesMapper {
     RegularTermRulesMapper INSTANCE = Mappers.getMapper(RegularTermRulesMapper.class);
 
-
-
     RegularTermRulesDTO objToDTO(RegularTermRules obj);
+
+    RegularTermRules dtoToObj(RegularTermRulesDTO regularTermRulesDTO);
 }

@@ -54,10 +54,6 @@ public class Student extends AbstractPersistable<Long> {
     @Column(name = "name_arabic")
     private String nameArabic;
 
-    @Lob
-    @Column(name = "img")
-    private byte[] img;
-
     @Column(name = "nationality")
     String nationality;
 

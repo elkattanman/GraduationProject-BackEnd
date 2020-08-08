@@ -13,6 +13,8 @@ public class UserDTO {
 
     private String name;
 
+    private byte[] img;
+
     private String username;
 
     private String email;

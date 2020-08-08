@@ -11,4 +11,7 @@ public interface PointSystemMapper {
 
 
     PointSystemDTO objToDTO(PointSystem obj);
+
+
+    PointSystem dtoToObj(PointSystemDTO pointSystemDTO);
 }

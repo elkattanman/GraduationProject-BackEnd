@@ -54,8 +54,7 @@ public class Department extends BaseEntity{
     @OneToMany(mappedBy = "department")
     List<Student> students;
 
-    @ManyToMany(mappedBy = "departments")
-    List<Course> courses;
+
 
 //    public static void main(String[] args) {
 //        Department department=Department.builder().code("cs").graduationHours(15).graduationProjectHours(15).minTerms(65).nameArabic("علوم حاسب").courses(new HashSet<>()).build();

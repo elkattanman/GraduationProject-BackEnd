@@ -15,8 +15,6 @@ public class StudentDTO {
 
     private String nameArabic;
 
-    private byte[] img;
-
     String nationality;
 
     String gender;
@@ -41,15 +39,15 @@ public class StudentDTO {
 
     double degrees;
 
-    int guide;
+    Long guide;
 
-    int user;
+    Long user;
 
-    int department;
+    Long department;
 
-    int city;
+    Long city;
 
-    int studentInfo;
+    Long studentInfo;
 
     @JsonProperty("student_url")
     private String studentUrl;

@@ -11,4 +11,7 @@ public interface ProgramLevelMapper {
 
 
     ProgramLevelDTO objToDTO(ProgramLevel obj);
+
+
+    ProgramLevel dtoToObj(ProgramLevelDTO programLevelDTO);
 }

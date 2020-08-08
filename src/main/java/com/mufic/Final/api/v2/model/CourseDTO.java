@@ -26,8 +26,6 @@ public class CourseDTO {
 
     String preCourse;
 
-    List<String> departments;
-
     @JsonProperty("course_url")
     private String courseUrl;
 

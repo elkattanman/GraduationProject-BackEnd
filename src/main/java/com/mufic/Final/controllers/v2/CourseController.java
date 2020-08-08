@@ -1,10 +1,10 @@
 package com.mufic.Final.controllers.v2;
 
+import com.mufic.Final.api.v2.model.CourseDTO;
 import com.mufic.Final.api.v2.model.lists.CourseListDTO;
 import com.mufic.Final.services.CourseService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(CourseController.BASE_URL)
@@ -17,8 +17,23 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    @GetMapping({"", "/"})
-    CourseListDTO courseList(){
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public CourseListDTO getList(){
         return courseService.getAll();
     }
+
+    @GetMapping({"/{code}"})
+    @ResponseStatus(HttpStatus.OK)
+    public CourseDTO getByCode(@PathVariable String code){
+        return courseService.getById(code);
+    }
+
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public CourseDTO createNewVendor(@RequestBody CourseDTO courseDTO){
+        return courseService.createNew(courseDTO);
+    }
+
 }

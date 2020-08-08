@@ -14,13 +14,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@ToString(callSuper = true)
+//@ToString
 @Builder
 @Entity
 @Table(name="course")
 public class Course{
 
     @Id
+    @Column(name = "code")
     String code;
 
     @Column(name = "name_english")
@@ -39,7 +40,7 @@ public class Course{
     private int LabHours;
 
     @Lob
-    @Column(name = "desc")
+    @Column(name = "description")
     private String description;
 
     @ManyToOne
@@ -66,12 +67,7 @@ public class Course{
     @OneToMany(mappedBy = "course")
     List<CourseInTerm> courseInTermList;
 
-    @ManyToMany
-    @JoinTable(name = "course_has_department",
-            joinColumns = @JoinColumn(name = "course_code"),
-            inverseJoinColumns = @JoinColumn(name = "department_id")
-    )
-    List<Department> departments;
+
 
 
     public String getParCourse(){
@@ -79,6 +75,25 @@ public class Course{
             return preCourse.getCode();
         return "-";
 //        return "Hello";
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "code='" + code + '\'' +
+                ", nameEnglish='" + nameEnglish + '\'' +
+                ", nameArabic='" + nameArabic + '\'' +
+                ", hours=" + hours +
+                ", lecHours=" + lecHours +
+                ", LabHours=" + LabHours +
+                ", description='" + description + '\'' +
+                ", program=" + program.getNameArabic() +
+                ", preCourse=" + preCourse.getCode() +
+                ", childern=" + childern +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", courseInTermList=" + courseInTermList +
+                '}';
     }
 
 }

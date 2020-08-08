@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@ToString(callSuper = true)
+@ToString
 @Builder
 @Entity
 @Table(name = "programs")

@@ -9,7 +9,7 @@ public class CourseInTermDTO {
 
 
     private Long id;
-    private int term;
+    private Long term;
 
     private String course;
 

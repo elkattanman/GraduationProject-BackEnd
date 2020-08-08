@@ -11,4 +11,6 @@ public interface PrivilegeMapper {
 
 
     PrivilegeDTO objToDTO(Privilege obj);
+
+    Privilege dtoToobj(PrivilegeDTO privilegeDTO);
 }

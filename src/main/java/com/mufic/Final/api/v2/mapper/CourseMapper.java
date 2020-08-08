@@ -3,7 +3,11 @@ package com.mufic.Final.api.v2.mapper;
 import com.mufic.Final.api.v2.model.CourseDTO;
 import com.mufic.Final.domain.Course;
 import com.mufic.Final.domain.Department;
+import com.mufic.Final.domain.Program;
+import com.mufic.Final.repositories.CourseRepository;
 import com.mufic.Final.repositories.DepartmentRepository;
+import com.mufic.Final.repositories.ProgramRepository;
+import com.mufic.Final.services.ProgramService;
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,14 +22,15 @@ public abstract class CourseMapper {
 //    CourseMapper INSTANCE = Mappers.getMapper(CourseMapper.class);
 
     @Autowired
-    DepartmentRepository departmentRepository;
+    private ProgramRepository programRepository;
+    @Autowired
+    private CourseRepository courseRepository;
 
     @Mapping(source = "program.id", target = "program")
     @Mapping(source = "preCourse.code", target = "preCourse")
     public abstract CourseDTO courseToCourseDTO(Course course);
 
-    @Mapping(target = "program.id", source = "program")
-    @Mapping(target = "preCourse.code", source = "preCourse")
+
     public abstract Course CourseDtoTocourse(CourseDTO course);
 
     @IterableMapping(elementTargetType = String.class)
@@ -35,12 +40,11 @@ public abstract class CourseMapper {
         return obj.getCode();
     }
 
-    @IterableMapping(elementTargetType = Department.class)
-    protected abstract List<Department> mapStringToDepartments(List<String> obj);
-
-    protected Department mapStringToDepartment(String code) {
-        return departmentRepository.findByCode(code).get();
+    protected Program Toprogram(Long id){
+        return programRepository.findById(id).get();
     }
 
-
+    protected Course toCourse(String code){
+        return courseRepository.findById(code).get();
+    }
 }

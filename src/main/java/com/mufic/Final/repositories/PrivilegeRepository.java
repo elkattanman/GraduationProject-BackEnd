@@ -6,4 +6,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin
 public interface PrivilegeRepository extends JpaRepository<Privilege, Long> {
+    Privilege findByName(String privilege);
 }
