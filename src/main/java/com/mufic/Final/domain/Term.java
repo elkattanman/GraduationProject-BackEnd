@@ -32,11 +32,11 @@ public class Term extends AbstractPersistable<Long> {
     @Column(name = "Term_type")
     private TermType termType;
 
-    @Column(name = "start")
+    @Column(name = "start_at")
     @Temporal(TemporalType.DATE)
     private Date start;
 
-    @Column(name = "end")
+    @Column(name = "end_at")
     @Temporal(TemporalType.DATE)
     private Date end;
 

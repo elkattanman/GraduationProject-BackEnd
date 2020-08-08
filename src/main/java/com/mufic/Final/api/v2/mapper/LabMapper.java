@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper
 public abstract class LabMapper {
-    LabMapper INSTANCE = Mappers.getMapper(LabMapper.class);
+//    LabMapper INSTANCE = Mappers.getMapper(LabMapper.class);
 
     @Autowired
     private CourseInTermRepository courseInTermRepository;
