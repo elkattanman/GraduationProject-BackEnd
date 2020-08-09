@@ -6,6 +6,7 @@ import com.mufic.Final.services.SummerTermRuleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(SummerTermRulesController.BASE_URL)
 public class SummerTermRulesController {

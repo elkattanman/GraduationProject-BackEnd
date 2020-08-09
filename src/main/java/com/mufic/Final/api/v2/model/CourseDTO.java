@@ -1,11 +1,15 @@
 package com.mufic.Final.api.v2.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@Setter
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CourseDTO {
 
     String code;
@@ -16,11 +20,13 @@ public class CourseDTO {
 
     private int hours;
 
-    private int lecHours;
+    private double lecHours;
 
-    private int LabHours;
+    private double labHours;
 
     private String description;
+
+    private int force;
 
     int program;
 

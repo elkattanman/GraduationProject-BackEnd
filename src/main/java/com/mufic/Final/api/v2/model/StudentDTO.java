@@ -2,11 +2,15 @@ package com.mufic.Final.api.v2.model;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Date;
 
-@Data
+@Setter
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class StudentDTO {
 
     private Long id;

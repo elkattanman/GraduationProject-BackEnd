@@ -6,6 +6,8 @@ import com.mufic.Final.services.DepartmentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+
+@CrossOrigin
 @RestController
 @RequestMapping(DepartmentController.BASE_URL)
 public class DepartmentController {

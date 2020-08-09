@@ -6,6 +6,8 @@ import com.mufic.Final.services.LabService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+
+@CrossOrigin
 @RestController
 @RequestMapping(LabController.BASE_URL)
 public class LabController {

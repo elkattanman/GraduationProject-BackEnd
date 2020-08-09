@@ -6,6 +6,7 @@ import com.mufic.Final.services.TermService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(TermController.BASE_URL)
 public class TermController {

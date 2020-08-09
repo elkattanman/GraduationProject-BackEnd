@@ -6,6 +6,7 @@ import com.mufic.Final.services.PrivilegeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(PrivilegeController.BASE_URL)
 public class PrivilegeController {

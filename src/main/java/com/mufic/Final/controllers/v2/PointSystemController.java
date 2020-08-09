@@ -6,6 +6,7 @@ import com.mufic.Final.services.PointSystemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(PointSystemController.BASE_URL)
 public class PointSystemController {

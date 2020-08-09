@@ -11,36 +11,12 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
-@Builder
 @Entity
 @Table(name = "countries")
 public class Country extends BaseEntity {
 
-//    @Builder
-//    public Country(Long id,String name, String iso3, String iso2, String phoneCode, String capital, String currency,
-//                   String nativ, String emoji, String emojiU, Date createdAt, Date updatedAt, boolean flag,
-//                   String wikiDataId, Set<State> states, Set<City> cities) {
-//        super(id);
-//        this.name = name;
-//        this.iso3 = iso3;
-//        this.iso2 = iso2;
-//        this.phoneCode = phoneCode;
-//        this.capital = capital;
-//        this.currency = currency;
-//        this.nativ = nativ;
-//        this.emoji = emoji;
-//        this.emojiU = emojiU;
-//        this.createdAt = createdAt;
-//        this.updatedAt = updatedAt;
-//        this.flag = flag;
-//        this.wikiDataId = wikiDataId;
-//        this.states = states;
-//        this.cities = cities;
-//    }
     @Column(name = "name")
     private String name;
 
@@ -90,4 +66,26 @@ public class Country extends BaseEntity {
             mappedBy = "country")
     private List<City> cities=new ArrayList<>();
 
+    @Builder
+    public Country(Long id, String name, String iso3, String iso2, String phoneCode, String capital, String currency, String nativ, String emoji, String emojiU, Date createdAt, Date updatedAt, boolean flag, String wikiDataId, List<State> states, List<City> cities) {
+        super(id);
+        this.name = name;
+        this.iso3 = iso3;
+        this.iso2 = iso2;
+        this.phoneCode = phoneCode;
+        this.capital = capital;
+        this.currency = currency;
+        this.nativ = nativ;
+        this.emoji = emoji;
+        this.emojiU = emojiU;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.flag = flag;
+        this.wikiDataId = wikiDataId;
+        this.states = states;
+        this.cities = cities;
+    }
+
+    public Country() {
+    }
 }

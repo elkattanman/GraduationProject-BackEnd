@@ -11,34 +11,13 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
-@Builder
 @Entity
 @Table(name = "cities")
 public class City extends BaseEntity{
 
-//    @Builder
-/*    public City(Long id, String name, State state, String stateCode, Country country, String countryCode,
-                double latitude, double longitude, Date createdAt, Date updatedAt, boolean flag, String wikiDataId,
-                Set<TeachingStaff> teachingStaffs, Set<StudentInfo> studentInfos) {
-        super(id);
-        this.name = name;
-        this.state = state;
-        this.stateCode = stateCode;
-        this.country = country;
-        this.countryCode = countryCode;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.flag = flag;
-        this.wikiDataId = wikiDataId;
-        this.teachingStaffs = teachingStaffs;
-        this.studentInfos = studentInfos;
-    }*/
+
 
     @Column(name = "name")
     String name;
@@ -84,4 +63,24 @@ public class City extends BaseEntity{
     List<Student> studentInfos;
 
 
+    @Builder
+    public City(Long id,String name, State state, String stateCode, Country country, String countryCode, double latitude, double longitude, Date createdAt, Date updatedOn, boolean flag, String wikiDataId, List<TeachingStaff> teachingStaffs, List<Student> studentInfos) {
+        super(id);
+        this.name = name;
+        this.state = state;
+        this.stateCode = stateCode;
+        this.country = country;
+        this.countryCode = countryCode;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.createdAt = createdAt;
+        this.updatedOn = updatedOn;
+        this.flag = flag;
+        this.wikiDataId = wikiDataId;
+        this.teachingStaffs = teachingStaffs;
+        this.studentInfos = studentInfos;
+    }
+
+    public City() {
+    }
 }

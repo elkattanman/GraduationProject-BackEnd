@@ -6,6 +6,7 @@ import com.mufic.Final.services.ProgramLevelService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(ProgramLevelController.BASE_URL)
 public class ProgramLevelController {

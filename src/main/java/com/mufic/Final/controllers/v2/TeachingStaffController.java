@@ -6,6 +6,7 @@ import com.mufic.Final.services.TeachingStaffService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(TeachingStaffController.BASE_URL)
 public class TeachingStaffController {

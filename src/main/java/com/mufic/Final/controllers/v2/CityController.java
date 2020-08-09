@@ -6,6 +6,7 @@ import com.mufic.Final.services.CityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(CityController.BASE_URL)
 public class CityController {

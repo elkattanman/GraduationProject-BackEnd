@@ -6,6 +6,7 @@ import com.mufic.Final.services.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(RoleController.BASE_URL)
 public class RoleController {

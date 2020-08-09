@@ -6,6 +6,7 @@ import com.mufic.Final.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(UserController.BASE_URL)
 public class UserController {

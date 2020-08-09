@@ -33,15 +33,18 @@ public class Course{
     @Column(name = "hours")
     private int hours;
 
-    @Column(name = "lec_hours")
-    private int lecHours;
+    @Column(name = "lec_hours", precision = 1)
+    private double lecHours;
 
-    @Column(name = "lab_hours")
-    private int LabHours;
+    @Column(name = "lab_hours", precision = 1)
+    private double LabHours;
 
     @Lob
     @Column(name = "description")
     private String description;
+
+    @Column(name = "force")
+    private int force;
 
     @ManyToOne
     @JoinColumn(name = "programs_id")
@@ -55,6 +58,9 @@ public class Course{
             cascade = CascadeType.ALL,
             mappedBy = "preCourse")
     List<Course> childern;
+
+
+
 
     @CreationTimestamp
     @Column(name = "create_time")

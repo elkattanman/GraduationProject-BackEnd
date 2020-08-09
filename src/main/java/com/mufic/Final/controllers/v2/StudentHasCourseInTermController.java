@@ -6,6 +6,7 @@ import com.mufic.Final.services.StudentHasCourseInTermService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(StudentHasCourseInTermController.BASE_URL)
 public class StudentHasCourseInTermController {

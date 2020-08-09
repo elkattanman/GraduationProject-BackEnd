@@ -12,30 +12,12 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
-@Builder
+
 @Entity
 @Table(name = "states")
 public class State extends BaseEntity{
-
-//    @Builder
-/*    public State(Long id, String name, Country country, String countryCode, String fipsCode, String ios2,
-                 Date createdAt, Date updatedAt, boolean flag, String wikiDataId, Set<City> cities) {
-        super(id);
-        this.name = name;
-        this.country = country;
-        this.countryCode = countryCode;
-        this.fipsCode = fipsCode;
-        this.ios2 = ios2;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.flag = flag;
-        this.wikiDataId = wikiDataId;
-        this.cities = cities;
-    }*/
 
     @Column(name = "name")
     String name;
@@ -71,5 +53,21 @@ public class State extends BaseEntity{
             mappedBy = "country")
     List<City> cities;
 
+    @Builder
+    public State(Long id, String name, Country country, String countryCode, String fipsCode, String iso2, Date createdAt, Date updatedAt, boolean flag, String wikiDataId, List<City> cities) {
+        super(id);
+        this.name = name;
+        this.country = country;
+        this.countryCode = countryCode;
+        this.fipsCode = fipsCode;
+        this.iso2 = iso2;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.flag = flag;
+        this.wikiDataId = wikiDataId;
+        this.cities = cities;
+    }
 
+    public State() {
+    }
 }

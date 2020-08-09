@@ -6,6 +6,7 @@ import com.mufic.Final.services.TransactionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(TransactionController.BASE_URL)
 public class TransactionController {
