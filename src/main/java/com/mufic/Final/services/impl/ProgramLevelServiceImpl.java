@@ -3,8 +3,8 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.ProgramLevelMapper;
 import com.mufic.Final.api.v2.model.ProgramLevelDTO;
 import com.mufic.Final.api.v2.model.lists.ProgramLevelListDTO;
-import com.mufic.Final.controllers.v2.CityController;
 import com.mufic.Final.controllers.v2.ProgramLevelController;
+import com.mufic.Final.domain.ProgramLevel;
 import com.mufic.Final.repositories.ProgramLevelRepository;
 import com.mufic.Final.services.ProgramLevelService;
 import com.mufic.Final.services.ResourceNotFoundException;
@@ -50,7 +50,18 @@ public class ProgramLevelServiceImpl implements ProgramLevelService {
 
     @Override
     public ProgramLevelDTO createNew(ProgramLevelDTO programLevelDTO) {
-        return null;
+        ProgramLevel programLevel=programLevelMapper.dtoToObj(programLevelDTO);
+        return saveAndReturnDTO(programLevel);
+    }
+
+    private ProgramLevelDTO saveAndReturnDTO(ProgramLevel programLevel) {
+        ProgramLevel saved = programLevelRepository.save(programLevel);
+
+        ProgramLevelDTO returnDto= programLevelMapper.objToDTO(saved);
+
+        returnDto.setProgramUrl(getUrl(saved.getId()));
+
+        return returnDto;
     }
 
     @Override
@@ -65,7 +76,7 @@ public class ProgramLevelServiceImpl implements ProgramLevelService {
 
     @Override
     public void deleteById(Long id) {
-
+        programLevelRepository.deleteById(id);
     }
 
     private String getUrl(long id) {

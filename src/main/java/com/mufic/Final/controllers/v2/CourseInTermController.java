@@ -31,4 +31,27 @@ public class CourseInTermController {
         return courseInTermService.getById(id);
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public CourseInTermDTO createNew(@RequestBody CourseInTermDTO dto){
+        return courseInTermService.createNew(dto);
+    }
+
+    @PutMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public CourseInTermDTO updateVendor(@PathVariable Long id, @RequestBody CourseInTermDTO dto){
+        return courseInTermService.saveByDTO(id, dto);
+    }
+
+    @PatchMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public CourseInTermDTO patchVendor(@PathVariable Long id, @RequestBody CourseInTermDTO dto){
+        return courseInTermService.saveByDTO(id, dto);
+    }
+
+    @DeleteMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteVendor(@PathVariable Long id){
+        courseInTermService.deleteById(id);
+    }
 }

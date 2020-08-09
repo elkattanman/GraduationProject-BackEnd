@@ -3,8 +3,9 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.RoleMapper;
 import com.mufic.Final.api.v2.model.RoleDTO;
 import com.mufic.Final.api.v2.model.lists.RoleListDTO;
-import com.mufic.Final.controllers.v2.CityController;
 import com.mufic.Final.controllers.v2.RoleController;
+import com.mufic.Final.domain.Program;
+import com.mufic.Final.domain.Role;
 import com.mufic.Final.repositories.RoleRepository;
 import com.mufic.Final.services.ResourceNotFoundException;
 import com.mufic.Final.services.RoleService;
@@ -50,12 +51,25 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public RoleDTO createNew(RoleDTO roleDTO) {
-        return null;
+        Role role=roleMapper.dtoToObj(roleDTO);
+        return saveAndReturnDTO(role);
+    }
+
+    private RoleDTO saveAndReturnDTO(Role role) {
+        Role saved = roleRepository.save(role);
+
+        RoleDTO returnDto= roleMapper.objToDTO(saved);
+
+        returnDto.setRoleUrl(getUrl(saved.getId()));
+
+        return returnDto;
     }
 
     @Override
     public RoleDTO saveByDTO(Long id, RoleDTO roleDTO) {
-        return null;
+        Role toSave = roleMapper.dtoToObj(roleDTO);
+        toSave.setId(id);
+        return saveAndReturnDTO(toSave);
     }
 
     @Override
@@ -65,7 +79,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void deleteById(Long id) {
-
+        roleRepository.deleteById(id);
     }
     private String getUrl(long id) {
         return RoleController.BASE_URL + "/" + id;

@@ -1,6 +1,7 @@
 package com.mufic.Final.controllers.v2;
 
 import com.mufic.Final.api.v2.model.ProgramLevelDTO;
+import com.mufic.Final.api.v2.model.UserDTO;
 import com.mufic.Final.api.v2.model.lists.ProgramLevelListDTO;
 import com.mufic.Final.services.ProgramLevelService;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,31 @@ public class ProgramLevelController {
     @ResponseStatus(HttpStatus.OK)
     public ProgramLevelDTO getById(@PathVariable Long id){
         return programLevelService.getById(id);
+    }
+
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProgramLevelDTO createNew(@RequestBody ProgramLevelDTO dto){
+        return programLevelService.createNew(dto);
+    }
+
+    @PutMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public ProgramLevelDTO updateVendor(@PathVariable Long id, @RequestBody ProgramLevelDTO dto){
+        return programLevelService.saveByDTO(id, dto);
+    }
+
+    @PatchMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public ProgramLevelDTO patchVendor(@PathVariable Long id, @RequestBody ProgramLevelDTO dto){
+        return programLevelService.saveByDTO(id, dto);
+    }
+
+    @DeleteMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteVendor(@PathVariable Long id){
+        programLevelService.deleteById(id);
     }
 
 }

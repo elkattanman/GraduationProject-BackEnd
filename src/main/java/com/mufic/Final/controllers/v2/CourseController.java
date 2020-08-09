@@ -1,6 +1,7 @@
 package com.mufic.Final.controllers.v2;
 
 import com.mufic.Final.api.v2.model.CourseDTO;
+import com.mufic.Final.api.v2.model.UserDTO;
 import com.mufic.Final.api.v2.model.lists.CourseListDTO;
 import com.mufic.Final.services.CourseService;
 import org.springframework.http.HttpStatus;
@@ -33,8 +34,29 @@ public class CourseController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CourseDTO createNewVendor(@RequestBody CourseDTO courseDTO){
+    public CourseDTO createNew(@RequestBody CourseDTO courseDTO){
         return courseService.createNew(courseDTO);
     }
+
+
+    @PutMapping({"/{code}"})
+    @ResponseStatus(HttpStatus.OK)
+    public CourseDTO updateVendor(@PathVariable String code, @RequestBody CourseDTO dto){
+        return courseService.saveByDTO(code, dto);
+    }
+
+    @PatchMapping({"/{code}"})
+    @ResponseStatus(HttpStatus.OK)
+    public CourseDTO patchVendor(@PathVariable String code, @RequestBody CourseDTO dto){
+        return courseService.saveByDTO(code, dto);
+    }
+
+    @DeleteMapping({"/{code}"})
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteVendor(@PathVariable String code){
+        courseService.deleteById(code);
+    }
+
+
 
 }

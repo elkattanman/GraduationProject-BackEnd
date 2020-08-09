@@ -10,6 +10,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class StudentInfoListDTO {
-    List<StudentInfoDTO> studentInfoS;
+    List<StudentInfoDTO> studentInfos;
 
 }

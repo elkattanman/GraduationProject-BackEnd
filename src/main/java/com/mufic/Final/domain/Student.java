@@ -19,34 +19,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "Student")
-public class Student extends AbstractPersistable<Long> {
-
-//    @Builder
-/*    public Student(String nameEnglish, String nameArabic, String nationality, Gender gender, String religion, Date DOB,
-                   String nationalId, String guardianName, String GuardianJob, String email, String secSchool,
-                   String preQualfication, Date QuilificationYear, double degrees, StudentInfo studentInfo,
-                   Date createTime, Set<StudentHasCourseInTerm> studentHasCourseInTerms, Set<Transaction> transactions,
-                   Set<Term> terms) {
-        this.nameEnglish = nameEnglish;
-        this.nameArabic = nameArabic;
-        this.nationality = nationality;
-        this.gender = gender;
-        this.religion = religion;
-        this.DOB = DOB;
-        this.nationalId = nationalId;
-        this.guardianName = guardianName;
-        this.GuardianJob = GuardianJob;
-        this.email = email;
-        this.secSchool = secSchool;
-        this.preQualfication = preQualfication;
-        this.QuilificationYear = QuilificationYear;
-        this.degrees = degrees;
-        this.studentInfo = studentInfo;
-        this.createTime = createTime;
-        this.studentHasCourseInTerms = studentHasCourseInTerms;
-        this.transactions = transactions;
-        this.terms = terms;
-    }*/
+public class Student extends BaseEntity {
 
     @Column(name = "name_english")
     private String nameEnglish;

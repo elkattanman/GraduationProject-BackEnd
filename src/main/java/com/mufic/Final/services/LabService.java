@@ -10,9 +10,9 @@ public interface LabService {
 
     LabDTO createNew(LabDTO labDTO);
 
-    LabDTO saveByDTO(Long id, LabDTO vendorDTO);
+    LabDTO saveByDTO(Long id, LabDTO labDTO);
 
-    LabDTO patch(Long id, LabDTO vendorDTO);
+    LabDTO patch(Long id, LabDTO labDTO);
 
     void deleteById(Long id);
 

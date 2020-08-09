@@ -1,6 +1,7 @@
 package com.mufic.Final.controllers.v2;
 
 import com.mufic.Final.api.v2.model.SummerTermRulesDTO;
+import com.mufic.Final.api.v2.model.UserDTO;
 import com.mufic.Final.api.v2.model.lists.SummerTermRulesListDTO;
 import com.mufic.Final.services.SummerTermRuleService;
 import org.springframework.http.HttpStatus;
@@ -31,5 +32,28 @@ public class SummerTermRulesController {
         return summerTermRuleService.getById(id);
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public SummerTermRulesDTO createNew(@RequestBody SummerTermRulesDTO dto){
+        return summerTermRuleService.createNew(dto);
+    }
+
+    @PutMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public SummerTermRulesDTO updateVendor(@PathVariable Long id, @RequestBody SummerTermRulesDTO dto){
+        return summerTermRuleService.saveByDTO(id, dto);
+    }
+
+    @PatchMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public SummerTermRulesDTO patchVendor(@PathVariable Long id, @RequestBody SummerTermRulesDTO dto){
+        return summerTermRuleService.saveByDTO(id, dto);
+    }
+
+    @DeleteMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteVendor(@PathVariable Long id){
+        summerTermRuleService.deleteById(id);
+    }
 
 }

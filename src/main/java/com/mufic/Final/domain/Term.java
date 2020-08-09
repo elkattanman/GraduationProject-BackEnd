@@ -19,7 +19,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "Term")
-public class Term extends AbstractPersistable<Long> {
+public class Term extends BaseEntity {
 
 
     @Column(name = "name_english")

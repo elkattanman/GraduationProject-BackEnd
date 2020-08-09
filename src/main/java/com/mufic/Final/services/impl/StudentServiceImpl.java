@@ -3,8 +3,9 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.StudentMapper;
 import com.mufic.Final.api.v2.model.StudentDTO;
 import com.mufic.Final.api.v2.model.lists.StudentListDTO;
-import com.mufic.Final.controllers.v2.StateController;
 import com.mufic.Final.controllers.v2.StudentController;
+import com.mufic.Final.domain.Program;
+import com.mufic.Final.domain.Student;
 import com.mufic.Final.repositories.StudentRepository;
 import com.mufic.Final.services.ResourceNotFoundException;
 import com.mufic.Final.services.StudentService;
@@ -50,12 +51,25 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDTO createNew(StudentDTO studentDTO) {
-        return null;
+        Student student=studentMapper.dtoToObj(studentDTO);
+        return saveAndReturnDTO(student);
+    }
+
+    private StudentDTO saveAndReturnDTO(Student student) {
+        Student saved = studentRepository.save(student);
+
+        StudentDTO returnDto= studentMapper.objToDTO(saved);
+
+        returnDto.setStudentUrl(getUrl(saved.getId()));
+
+        return returnDto;
     }
 
     @Override
     public StudentDTO saveByDTO(Long id, StudentDTO studentDTO) {
-        return null;
+        Student toSave = studentMapper.dtoToObj(studentDTO);
+        toSave.setId(id);
+        return saveAndReturnDTO(toSave);
     }
 
     @Override

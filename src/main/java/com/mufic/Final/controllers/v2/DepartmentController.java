@@ -1,6 +1,7 @@
 package com.mufic.Final.controllers.v2;
 
 import com.mufic.Final.api.v2.model.DepartmentDTO;
+import com.mufic.Final.api.v2.model.UserDTO;
 import com.mufic.Final.api.v2.model.lists.DepartmentListDTO;
 import com.mufic.Final.services.DepartmentService;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,30 @@ public class DepartmentController {
     @ResponseStatus(HttpStatus.OK)
     public DepartmentDTO getById(@PathVariable Long id){
         return departmentService.getById(id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public DepartmentDTO createNew(@RequestBody DepartmentDTO dto){
+        return departmentService.createNew(dto);
+    }
+
+    @PutMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public DepartmentDTO updateVendor(@PathVariable Long id, @RequestBody DepartmentDTO dto){
+        return departmentService.saveByDTO(id, dto);
+    }
+
+    @PatchMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public DepartmentDTO patchVendor(@PathVariable Long id, @RequestBody DepartmentDTO dto){
+        return departmentService.saveByDTO(id, dto);
+    }
+
+    @DeleteMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteVendor(@PathVariable Long id){
+        departmentService.deleteById(id);
     }
 
 }

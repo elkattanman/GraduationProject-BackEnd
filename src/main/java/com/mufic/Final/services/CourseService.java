@@ -12,8 +12,8 @@ public interface CourseService {
 
     CourseDTO saveByDTO(String code, CourseDTO courseDTO);
 
-    CourseDTO patch(Long id, CourseDTO courseDTO);
+    CourseDTO patch(String code, CourseDTO courseDTO);
 
-    void deleteById(Long id);
+    void deleteById(String code);
 
 }

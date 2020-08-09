@@ -3,8 +3,8 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.StudentInfoMapper;
 import com.mufic.Final.api.v2.model.StudentInfoDTO;
 import com.mufic.Final.api.v2.model.lists.StudentInfoListDTO;
-import com.mufic.Final.controllers.v2.StateController;
 import com.mufic.Final.controllers.v2.StudentInfoController;
+import com.mufic.Final.domain.Program;
 import com.mufic.Final.domain.StudentInfo;
 import com.mufic.Final.repositories.StudentInfoRepository;
 import com.mufic.Final.services.ResourceNotFoundException;
@@ -51,12 +51,25 @@ public class StudentInfoServiceImpl implements StudentInfoService {
 
     @Override
     public StudentInfoDTO createNew(StudentInfoDTO studentInfoDTO) {
-        return null;
+        StudentInfo studentInfo=studentInfoMapper.dtoToObj(studentInfoDTO);
+        return saveAndReturnDTO(studentInfo);
+    }
+
+    private StudentInfoDTO saveAndReturnDTO(StudentInfo studentInfo) {
+        StudentInfo saved = studentInfoRepository.save(studentInfo);
+
+        StudentInfoDTO returnDto= studentInfoMapper.objToDTO(saved);
+
+        returnDto.setStudentInfoUrl(getUrl(saved.getId()));
+
+        return returnDto;
     }
 
     @Override
     public StudentInfoDTO saveByDTO(Long id, StudentInfoDTO studentInfoDTO) {
-        return null;
+        StudentInfo toSave = studentInfoMapper.dtoToObj(studentInfoDTO);
+        toSave.setId(id);
+        return saveAndReturnDTO(toSave);
     }
 
     @Override
@@ -66,7 +79,7 @@ public class StudentInfoServiceImpl implements StudentInfoService {
 
     @Override
     public void deleteById(Long id) {
-
+        studentInfoRepository.deleteById(id);
     }
 
     private String getUrl(long id) {

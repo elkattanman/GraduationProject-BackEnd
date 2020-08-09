@@ -3,8 +3,9 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.UserMapper;
 import com.mufic.Final.api.v2.model.UserDTO;
 import com.mufic.Final.api.v2.model.lists.UserListDTO;
-import com.mufic.Final.controllers.v2.StateController;
 import com.mufic.Final.controllers.v2.UserController;
+import com.mufic.Final.domain.Program;
+import com.mufic.Final.domain.User;
 import com.mufic.Final.repositories.UserRepository;
 import com.mufic.Final.services.ResourceNotFoundException;
 import com.mufic.Final.services.UserService;
@@ -51,12 +52,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO createNew(UserDTO userDTO) {
-        return null;
+        User user=userMapper.dtoToObj(userDTO);
+        return saveAndReturnDTO(user);
+    }
+
+    private UserDTO saveAndReturnDTO(User user) {
+        User saved = userRepository.save(user);
+
+        UserDTO returnDto= userMapper.objToDTO(saved);
+
+        returnDto.setUserUrl(getUrl(saved.getId()));
+
+        return returnDto;
     }
 
     @Override
     public UserDTO saveByDTO(Long id, UserDTO userDTO) {
-        return null;
+        User toSave = userMapper.dtoToObj(userDTO);
+        toSave.setId(id);
+        return saveAndReturnDTO(toSave);
     }
 
     @Override
@@ -66,7 +80,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteById(Long id) {
-
+        userRepository.deleteById(id);
     }
 
     private String getUrl(long id) {

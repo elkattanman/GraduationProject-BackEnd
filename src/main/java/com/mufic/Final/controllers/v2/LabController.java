@@ -31,4 +31,28 @@ public class LabController {
         return labService.getById(id);
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public LabDTO createNew(@RequestBody LabDTO dto){
+        return labService.createNew(dto);
+    }
+
+    @PutMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public LabDTO updateVendor(@PathVariable Long id, @RequestBody LabDTO dto){
+        return labService.saveByDTO(id, dto);
+    }
+
+    @PatchMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public LabDTO patchVendor(@PathVariable Long id, @RequestBody LabDTO dto){
+        return labService.saveByDTO(id, dto);
+    }
+
+    @DeleteMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteVendor(@PathVariable Long id){
+        labService.deleteById(id);
+    }
+
 }

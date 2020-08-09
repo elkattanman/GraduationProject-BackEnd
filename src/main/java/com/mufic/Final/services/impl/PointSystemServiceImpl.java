@@ -3,8 +3,8 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.PointSystemMapper;
 import com.mufic.Final.api.v2.model.PointSystemDTO;
 import com.mufic.Final.api.v2.model.lists.PointSystemListDTO;
-import com.mufic.Final.controllers.v2.CityController;
 import com.mufic.Final.controllers.v2.PointSystemController;
+import com.mufic.Final.domain.Department;
 import com.mufic.Final.domain.PointSystem;
 import com.mufic.Final.repositories.PointSystemRepository;
 import com.mufic.Final.services.PointSystemService;
@@ -51,12 +51,25 @@ public class PointSystemServiceImpl implements PointSystemService {
 
     @Override
     public PointSystemDTO createNew(PointSystemDTO pointSystemDTO) {
-        return null;
+        PointSystem pointSystem=pointSystemMapper.dtoToObj(pointSystemDTO);
+        return saveAndReturnDTO(pointSystem);
+    }
+
+    private PointSystemDTO saveAndReturnDTO(PointSystem pointSystem) {
+        PointSystem saved = pointSystemRepository.save(pointSystem);
+
+        PointSystemDTO returnDto= pointSystemMapper.objToDTO(saved);
+
+        returnDto.setPointSystemUrl(getUrl(saved.getId()));
+
+        return returnDto;
     }
 
     @Override
     public PointSystemDTO saveByDTO(Long id, PointSystemDTO pointSystemDTO) {
-        return null;
+        PointSystem toSave = pointSystemMapper.dtoToObj(pointSystemDTO);
+        toSave.setId(id);
+        return saveAndReturnDTO(toSave);
     }
 
     @Override
@@ -66,7 +79,7 @@ public class PointSystemServiceImpl implements PointSystemService {
 
     @Override
     public void deleteById(Long id) {
-
+        pointSystemRepository.deleteById(id);
     }
     private String getUrl(long id) {
         return PointSystemController.BASE_URL + "/" + id;

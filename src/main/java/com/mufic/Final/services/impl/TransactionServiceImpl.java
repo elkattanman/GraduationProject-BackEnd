@@ -3,8 +3,8 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.TransactionMapper;
 import com.mufic.Final.api.v2.model.TransactionDTO;
 import com.mufic.Final.api.v2.model.lists.TransactionsListDTO;
-import com.mufic.Final.controllers.v2.StateController;
 import com.mufic.Final.controllers.v2.TransactionController;
+import com.mufic.Final.domain.Program;
 import com.mufic.Final.domain.Transaction;
 import com.mufic.Final.repositories.TransactionRepository;
 import com.mufic.Final.services.ResourceNotFoundException;
@@ -51,12 +51,25 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionDTO createNew(TransactionDTO transactionDTO) {
-        return null;
+        Transaction transaction=transactionMapper.dtoToObj(transactionDTO);
+        return saveAndReturnDTO(transaction);
+    }
+
+    private TransactionDTO saveAndReturnDTO(Transaction transaction) {
+        Transaction saved = transactionRepository.save(transaction);
+
+        TransactionDTO returnDto= transactionMapper.objToDTO(saved);
+
+        returnDto.setTransactionUrl(getUrl(saved.getId()));
+
+        return returnDto;
     }
 
     @Override
     public TransactionDTO saveByDTO(Long id, TransactionDTO transactionDTO) {
-        return null;
+        Transaction toSave = transactionMapper.dtoToObj(transactionDTO);
+        toSave.setId(id);
+        return saveAndReturnDTO(toSave);
     }
 
     @Override
@@ -66,7 +79,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public void deleteById(Long id) {
-
+        transactionRepository.deleteById(id);
     }
 
     private String getUrl(long id) {

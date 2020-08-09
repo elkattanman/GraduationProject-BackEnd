@@ -3,9 +3,9 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.RegularTermRulesMapper;
 import com.mufic.Final.api.v2.model.RegularTermRulesDTO;
 import com.mufic.Final.api.v2.model.lists.RegularTermRulesListDTO;
-import com.mufic.Final.controllers.v2.CityController;
 import com.mufic.Final.controllers.v2.RegularTermRulesController;
-import com.mufic.Final.domain.PointKey;
+import com.mufic.Final.domain.Program;
+import com.mufic.Final.domain.RegularTermRules;
 import com.mufic.Final.repositories.RegularTermRuleRepository;
 import com.mufic.Final.services.RegularTermRuleService;
 import com.mufic.Final.services.ResourceNotFoundException;
@@ -51,12 +51,25 @@ public class RegularTermRuleServiceImpl implements RegularTermRuleService {
 
     @Override
     public RegularTermRulesDTO createNew(RegularTermRulesDTO regularTermRulesDTO) {
-        return null;
+        RegularTermRules regularTermRules=regularTermRulesMapper.dtoToObj(regularTermRulesDTO);
+        return saveAndReturnDTO(regularTermRules);
+    }
+
+    private RegularTermRulesDTO saveAndReturnDTO(RegularTermRules regularTermRules) {
+        RegularTermRules saved = regularTermRuleRepository.save(regularTermRules);
+
+        RegularTermRulesDTO returnDto= regularTermRulesMapper.objToDTO(saved);
+
+        returnDto.setUrl(getUrl(saved.getId()));
+
+        return returnDto;
     }
 
     @Override
     public RegularTermRulesDTO saveByDTO(Long id, RegularTermRulesDTO regularTermRulesDTO) {
-        return null;
+        RegularTermRules toSave = regularTermRulesMapper.dtoToObj(regularTermRulesDTO);
+        toSave.setId(id);
+        return saveAndReturnDTO(toSave);
     }
 
     @Override

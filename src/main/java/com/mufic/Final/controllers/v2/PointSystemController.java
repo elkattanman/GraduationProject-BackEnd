@@ -30,4 +30,28 @@ public class PointSystemController {
         return pointSystemService.getById(id);
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public PointSystemDTO createNew(@RequestBody PointSystemDTO dto){
+        return pointSystemService.createNew(dto);
+    }
+
+    @PutMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public PointSystemDTO updateVendor(@PathVariable Long id, @RequestBody PointSystemDTO dto){
+        return pointSystemService.saveByDTO(id, dto);
+    }
+
+    @PatchMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public PointSystemDTO patchVendor(@PathVariable Long id, @RequestBody PointSystemDTO dto){
+        return pointSystemService.saveByDTO(id, dto);
+    }
+
+    @DeleteMapping({"/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteVendor(@PathVariable Long id){
+        pointSystemService.deleteById(id);
+    }
+
 }

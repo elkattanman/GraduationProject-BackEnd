@@ -3,8 +3,9 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.PrivilegeMapper;
 import com.mufic.Final.api.v2.model.PrivilegeDTO;
 import com.mufic.Final.api.v2.model.lists.PrivilegeListDTO;
-import com.mufic.Final.controllers.v2.CityController;
 import com.mufic.Final.controllers.v2.PrivilegeController;
+import com.mufic.Final.domain.PointSystem;
+import com.mufic.Final.domain.Privilege;
 import com.mufic.Final.repositories.PrivilegeRepository;
 import com.mufic.Final.services.PrivilegeService;
 import com.mufic.Final.services.ResourceNotFoundException;
@@ -50,12 +51,25 @@ public class PrivilegeServiceImpl implements PrivilegeService {
 
     @Override
     public PrivilegeDTO createNew(PrivilegeDTO privilegeDTO) {
-        return null;
+        Privilege privilege=privilegeMapper.dtoToobj(privilegeDTO);
+        return saveAndReturnDTO(privilege);
+    }
+
+    private PrivilegeDTO saveAndReturnDTO(Privilege privilege) {
+        Privilege saved = privilegeRepository.save(privilege);
+
+        PrivilegeDTO returnDto= privilegeMapper.objToDTO(saved);
+
+        returnDto.setPrivilegeUrl(getUrl(saved.getId()));
+
+        return returnDto;
     }
 
     @Override
     public PrivilegeDTO saveByDTO(Long id, PrivilegeDTO privilegeDTO) {
-        return null;
+        Privilege toSave = privilegeMapper.dtoToobj(privilegeDTO);
+        toSave.setId(id);
+        return saveAndReturnDTO(toSave);
     }
 
     @Override
@@ -65,7 +79,7 @@ public class PrivilegeServiceImpl implements PrivilegeService {
 
     @Override
     public void deleteById(Long id) {
-
+        privilegeRepository.deleteById(id);
     }
     private String getUrl(long id) {
         return PrivilegeController.BASE_URL + "/" + id;

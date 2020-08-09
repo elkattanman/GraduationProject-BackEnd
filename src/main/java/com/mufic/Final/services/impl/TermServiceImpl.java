@@ -3,8 +3,9 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.TermMapper;
 import com.mufic.Final.api.v2.model.TermDTO;
 import com.mufic.Final.api.v2.model.lists.TermListDTO;
-import com.mufic.Final.controllers.v2.StateController;
 import com.mufic.Final.controllers.v2.TermController;
+import com.mufic.Final.domain.Program;
+import com.mufic.Final.domain.Term;
 import com.mufic.Final.repositories.TermRepository;
 import com.mufic.Final.services.ResourceNotFoundException;
 import com.mufic.Final.services.TermService;
@@ -50,12 +51,25 @@ public class TermServiceImpl implements TermService {
 
     @Override
     public TermDTO createNew(TermDTO termDTO) {
-        return null;
+        Term term=termMapper.dtoToTerm(termDTO);
+        return saveAndReturnDTO(term);
+    }
+
+    private TermDTO saveAndReturnDTO(Term term) {
+        Term saved = termRepository.save(term);
+
+        TermDTO returnDto= termMapper.objToDTO(saved);
+
+        returnDto.setTermUrl(getUrl(saved.getId()));
+
+        return returnDto;
     }
 
     @Override
     public TermDTO saveByDTO(Long id, TermDTO termDTO) {
-        return null;
+        Term toSave = termMapper.dtoToTerm(termDTO);
+        toSave.setId(id);
+        return saveAndReturnDTO(toSave);
     }
 
     @Override
@@ -65,7 +79,7 @@ public class TermServiceImpl implements TermService {
 
     @Override
     public void deleteById(Long id) {
-
+        termRepository.deleteById(id);
     }
 
     private String getUrl(long id) {

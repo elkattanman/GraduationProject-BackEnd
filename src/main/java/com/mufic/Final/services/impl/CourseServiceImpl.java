@@ -3,7 +3,6 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.CourseMapper;
 import com.mufic.Final.api.v2.model.CourseDTO;
 import com.mufic.Final.api.v2.model.lists.CourseListDTO;
-import com.mufic.Final.controllers.v2.CityController;
 import com.mufic.Final.controllers.v2.CourseController;
 import com.mufic.Final.domain.Course;
 import com.mufic.Final.repositories.CourseRepository;
@@ -57,6 +56,7 @@ public class CourseServiceImpl implements CourseService {
         return saveAndReturnDTO(course);
 //        return null;
     }
+
     private CourseDTO saveAndReturnDTO(Course course) {
         Course saved = courseRepository.save(course);
 
@@ -69,17 +69,31 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseDTO saveByDTO(String code, CourseDTO courseDTO) {
-        return null;
+        Course toSave = courseMapper.CourseDtoTocourse(courseDTO);
+        toSave.setCode(code);
+
+        return saveAndReturnDTO(toSave);
     }
 
     @Override
-    public CourseDTO patch(Long id, CourseDTO courseDTO) {
-        return null;
+    public CourseDTO patch(String code, CourseDTO courseDTO) {
+        return courseRepository.findById(code)
+            .map(vendor -> {
+                //todo if more properties, add more if statements
+                if(courseDTO.getNameArabic() != null){
+                    vendor.setNameArabic(courseDTO.getNameArabic());
+                }
+                if(courseDTO.getNameEnglish() != null){
+                    vendor.setNameEnglish(courseDTO.getNameEnglish());
+                }
+
+                return saveAndReturnDTO(vendor);
+            }).orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
-    public void deleteById(Long id) {
-
+    public void deleteById(String code) {
+        courseRepository.deleteById(code);
     }
 
     private String getUrl(String code) {

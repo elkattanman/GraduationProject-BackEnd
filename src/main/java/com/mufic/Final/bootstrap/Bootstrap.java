@@ -1,25 +1,14 @@
 //package com.mufic.Final.bootstrap;
 //
-//import com.mufic.Final.api.v2.model.CourseDTO;
-//import com.mufic.Final.api.v2.model.DepartmentDTO;
-//import com.mufic.Final.api.v2.model.StudentDTO;
-//import com.mufic.Final.api.v2.model.lists.CourseListDTO;
-//import com.mufic.Final.api.v2.model.lists.DepartmentListDTO;
-//import com.mufic.Final.api.v2.model.lists.StudentListDTO;
+//import com.mufic.Final.api.v2.model.*;
+//import com.mufic.Final.api.v2.model.lists.*;
 //import com.mufic.Final.domain.*;
-//import com.mufic.Final.repositories.CityRepository;
-//import com.mufic.Final.repositories.CountryRepository;
-//import com.mufic.Final.repositories.StateRepository;
+//import com.mufic.Final.repositories.*;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.CommandLineRunner;
 //import org.springframework.stereotype.Component;
 //
-//import java.util.ArrayList;
-//import java.util.Date;
-//import java.util.List;
-//
-//import static ch.qos.logback.core.rolling.helper.CompressionMode.GZ;
-//import static sun.jvm.hotspot.debugger.win32.coff.DebugVC50X86RegisterEnums.BH;
+//import java.util.*;
 //
 //
 //@Component
@@ -28,89 +17,91 @@
 //    @Autowired private CityRepository cityRepository;
 //    @Autowired private StateRepository stateRepository;
 //    @Autowired private CountryRepository countryRepository;
+//    @Autowired private ProgramRepository programRepository;
+//    @Autowired private StudentInfoRepository studentInfoRepository;
 //
 //    private List<Country> countries(){
 //        List<Country> countries=new ArrayList<>();
-//        countries.add(Country.builder().id(65l).name("Egypt").iso3("EGY").iso2("EG").phoneCode("20").capital("Cairo")
+//        countries.add(Country.builder().id(65L).name("Egypt").iso3("EGY").iso2("EG").phoneCode("20").capital("Cairo")
 //                .currency("EGP").nativ("مصر").emoji("??").emojiU("U+1F1EA U+1F1EC").wikiDataId("Q79").build());
 //        return countries;
 //    }
 //
 //    private List<State> states(){
 //        List<State> states=new ArrayList<>();
-//        states.add(State.builder().id(3222l).name("Kafr el-Sheikh Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3223l).name("Cairo Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3224l).name("Damietta Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3225l).name("Aswan Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3226l).name("Sohag Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3227l).name("North Sinai Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3228l).name("Monufia Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3229l).name("Port Said Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3230l).name("Beni Suef Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3231l).name("Matrouh Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3232l).name("Qalyubia Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3233l).name("Suez Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3234l).name("Gharbia Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3235l).name("Alexandria Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3236l).name("Asyut Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3237l).name("South Sinai Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3238l).name("Faiyum Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3239l).name("Giza Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3240l).name("Red Sea Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3241l).name("Beheira Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3242l).name("Luxor Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3243l).name("Minya Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3244l).name("Ismailia Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3245l).name("Dakahlia Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3246l).name("New Valley Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
-//        states.add(State.builder().id(3247l).name("Qena Governorate").country(countryRepository.getOne(65l)).countryCode("EG").build());
+//        states.add(State.builder().id(3222L).name("Kafr el-Sheikh Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3223L).name("Cairo Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3224L).name("Damietta Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3225L).name("Aswan Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3226L).name("Sohag Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3227L).name("North Sinai Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3228L).name("Monufia Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3229L).name("Port Said Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3230L).name("Beni Suef Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3231L).name("Matrouh Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3232L).name("Qalyubia Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3233L).name("Suez Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3234L).name("Gharbia Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3235L).name("Alexandria Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3236L).name("Asyut Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3237L).name("South Sinai Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3238L).name("Faiyum Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3239L).name("Giza Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3240L).name("Red Sea Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3241L).name("Beheira Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3242L).name("Luxor Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3243L).name("Minya Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3244L).name("Ismailia Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3245L).name("Dakahlia Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3246L).name("New Valley Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+//        states.add(State.builder().id(3247L).name("Qena Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
 //        return states;
 //    }
 //
 //    private List<City> cities(){
 //        List<City> cities=new ArrayList<>();
-//        cities.add(City.builder().id(31755l).name("Abnūb").state(stateRepository.getOne(3236l)).stateCode("AST")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q975904").build());
-//        cities.add(City.builder().id(31756l).name("Abu Simbel").state(stateRepository.getOne(3225l)).stateCode("ASN")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31757l).name("Abū Qurqāş").state(stateRepository.getOne(3243l)).stateCode("MN")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31758l).name("Abū Tīj").state(stateRepository.getOne(3236l)).stateCode("AST")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31759l).name("Abū al Maţāmīr").state(stateRepository.getOne(3241l)).stateCode("BH")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31760l).name("Ad Dilinjāt").state(stateRepository.getOne(3241l)).stateCode("BH")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31761l).name("Ain Sukhna").state(stateRepository.getOne(3233l)).stateCode("SUZ")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31762l).name("Ajā").state(stateRepository.getOne(3245l)).stateCode("DK")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31763l).name("Akhmīm").state(stateRepository.getOne(3226l)).stateCode("SHG")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31764l).name("Al Badārī").state(stateRepository.getOne(3236l)).stateCode("AST")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31765l).name("Al Balyanā").state(stateRepository.getOne(3226l)).stateCode("SHG")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31766l).name("Al Bawīţī").state(stateRepository.getOne(3239l)).stateCode("GZ")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31767l).name("Al Bājūr").state(stateRepository.getOne(3228l)).stateCode("MNF")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31768l).name("Al Fashn").state(stateRepository.getOne(3230l)).stateCode("BNS")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31769l).name("Al Fayyūm").state(stateRepository.getOne(3238l)).stateCode("FYM")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31770l).name("Al Jammālīyah").state(stateRepository.getOne(3245l)).stateCode("DK")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31771l).name("Al Khānkah").state(stateRepository.getOne(3232l)).stateCode("KB")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31772l).name("Al Khārijah").state(stateRepository.getOne(3246l)).stateCode("WAD")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31773l).name("Al Manshāh").state(stateRepository.getOne(3226l)).stateCode("SHG")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31774l).name("Al Manzalah").state(stateRepository.getOne(3245l)).stateCode("DK")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
-//        cities.add(City.builder().id(31775l).name("Al Manşūrah").state(stateRepository.getOne(3245l)).stateCode("DK")
-//                .country(countryRepository.getOne(65l)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31755L).name("Abnūb").state(stateRepository.getOne(3236L)).stateCode("AST")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q975904").build());
+//        cities.add(City.builder().id(31756L).name("Abu Simbel").state(stateRepository.getOne(3225L)).stateCode("ASN")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31757L).name("Abū Qurqāş").state(stateRepository.getOne(3243L)).stateCode("MN")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31758L).name("Abū Tīj").state(stateRepository.getOne(3236L)).stateCode("AST")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31759L).name("Abū al Maţāmīr").state(stateRepository.getOne(3241L)).stateCode("BH")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31760L).name("Ad Dilinjāt").state(stateRepository.getOne(3241L)).stateCode("BH")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31761L).name("Ain Sukhna").state(stateRepository.getOne(3233L)).stateCode("SUZ")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31762L).name("Ajā").state(stateRepository.getOne(3245L)).stateCode("DK")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31763L).name("Akhmīm").state(stateRepository.getOne(3226L)).stateCode("SHG")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31764L).name("Al Badārī").state(stateRepository.getOne(3236L)).stateCode("AST")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31765L).name("Al Balyanā").state(stateRepository.getOne(3226L)).stateCode("SHG")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31766L).name("Al Bawīţī").state(stateRepository.getOne(3239L)).stateCode("GZ")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31767L).name("Al Bājūr").state(stateRepository.getOne(3228L)).stateCode("MNF")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31768L).name("Al Fashn").state(stateRepository.getOne(3230L)).stateCode("BNS")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31769L).name("Al Fayyūm").state(stateRepository.getOne(3238L)).stateCode("FYM")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31770L).name("Al Jammālīyah").state(stateRepository.getOne(3245L)).stateCode("DK")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31771L).name("Al Khānkah").state(stateRepository.getOne(3232L)).stateCode("KB")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31772L).name("Al Khārijah").state(stateRepository.getOne(3246L)).stateCode("WAD")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31773L).name("Al Manshāh").state(stateRepository.getOne(3226L)).stateCode("SHG")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31774L).name("Al Manzalah").state(stateRepository.getOne(3245L)).stateCode("DK")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
+//        cities.add(City.builder().id(31775L).name("Al Manşūrah").state(stateRepository.getOne(3245L)).stateCode("DK")
+//                .country(countryRepository.getOne(65L)).countryCode("EG").latitude(27.26960000).longitude(31.15105000).wikiDataId("Q6655437").build());
 //
 //        return  cities;
 //    }
@@ -130,7 +121,7 @@
 //        courseListDTO.getCourses().add(CourseDTO.builder().code("BCS241").nameArabic("نظم التشغیل").nameEnglish("Operating Systems").hours(3)
 //                .lecHours(2.5).labHours(1).description("").program(8).force(1).build());
 //        courseListDTO.getCourses().add(CourseDTO.builder().code("BCS251").nameArabic("").nameEnglish("").hours(3)
-//                .lecHours(3).labHours(3).description("").program().preCourse().force().build());
+//                .lecHours(2.5).labHours(1).description("").program().preCourse().force().build());
 //        courseListDTO.getCourses().add(CourseDTO.builder().code("BCS316").nameArabic("").nameEnglish("").hours(3)
 //                .lecHours(3).labHours(3).description("").program().preCourse().force().build());
 //        courseListDTO.getCourses().add(CourseDTO.builder().code("BCS322").nameArabic("").nameEnglish("").hours(3)
@@ -254,25 +245,25 @@
 //    DepartmentListDTO departmentListDTO(){
 //        DepartmentListDTO departmentListDTO= new DepartmentListDTO(new ArrayList<>());
 //        departmentListDTO.getDepartments()
-//                .add(DepartmentDTO.builder().id(1l).nameArabic("عام").nameEnglish("General").code("G").graduationProjectHours(128)
+//                .add(DepartmentDTO.builder().id(1L).nameArabic("عام").nameEnglish("General").code("G").graduationProjectHours(128)
 //                        .graduationHours(128).minTerms(4).maxDegreeOnFail(64).build());
 //        departmentListDTO.getDepartments()
-//                .add(DepartmentDTO.builder().id(2l).nameArabic("علو الحاسب").nameEnglish("Computer Science").code("CS").graduationProjectHours(128)
+//                .add(DepartmentDTO.builder().id(2L).nameArabic("علو الحاسب").nameEnglish("Computer Science").code("CS").graduationProjectHours(128)
 //                        .graduationHours(128).minTerms(4).maxDegreeOnFail(64).build());
 //        departmentListDTO.getDepartments()
-//                .add(DepartmentDTO.builder().id(3l).nameArabic("تكنولوجيا المعلومات").nameEnglish("Information Technology").code("IT").graduationProjectHours(128)
+//                .add(DepartmentDTO.builder().id(3L).nameArabic("تكنولوجيا المعلومات").nameEnglish("Information Technology").code("IT").graduationProjectHours(128)
 //                        .graduationHours(128).minTerms(4).maxDegreeOnFail(64).build());
 //        departmentListDTO.getDepartments()
-//                .add(DepartmentDTO.builder().id(4l).nameArabic("نظم المعلومات").nameEnglish("Information System").code("IS").graduationProjectHours(128)
+//                .add(DepartmentDTO.builder().id(4L).nameArabic("نظم المعلومات").nameEnglish("Information System").code("IS").graduationProjectHours(128)
 //                        .graduationHours(128).minTerms(4).maxDegreeOnFail(64).build());
 //        departmentListDTO.getDepartments()
-//                .add(DepartmentDTO.builder().id(5l).nameArabic("بحوث العمليات").nameEnglish("Orgnization Research").code("OR").graduationProjectHours(128)
+//                .add(DepartmentDTO.builder().id(5L).nameArabic("بحوث العمليات").nameEnglish("Orgnization Research").code("OR").graduationProjectHours(128)
 //                        .graduationHours(128).minTerms(4).maxDegreeOnFail(64).build());
 //        departmentListDTO.getDepartments()
-//                .add(DepartmentDTO.builder().id(6l).nameArabic("هندسه النظم").nameEnglish("Software Engineering").code("SE").graduationProjectHours(136)
+//                .add(DepartmentDTO.builder().id(6L).nameArabic("هندسه النظم").nameEnglish("Software Engineering").code("SE").graduationProjectHours(136)
 //                        .graduationHours(128).minTerms(8).maxDegreeOnFail(64).build());
 //        departmentListDTO.getDepartments()
-//                .add(DepartmentDTO.builder().id(7l).nameArabic("الحوسبه والمعلوماتيه الحيويه").nameEnglish("Bioinformatics").code("BIO").graduationProjectHours(136)
+//                .add(DepartmentDTO.builder().id(7L).nameArabic("الحوسبه والمعلوماتيه الحيويه").nameEnglish("Bioinformatics").code("BIO").graduationProjectHours(136)
 //                        .graduationHours(128).minTerms(8).maxDegreeOnFail(64).build());
 //
 //        return departmentListDTO;
@@ -310,18 +301,18 @@
 //
 //    List<Program> programs(){
 //        List<Program> programs=new ArrayList<>();
-//        programs.add(Program.builder().id().nameArabic("").nameEnglish("").hours().underRequirement().build());
-//        programs.add(Program.builder().id().nameArabic("").nameEnglish("").hours().underRequirement().build());
-//        programs.add(Program.builder().id().nameArabic("").nameEnglish("").hours().underRequirement().build());
-//        programs.add(Program.builder().id().nameArabic("").nameEnglish("").hours().underRequirement().build());
-//        programs.add(Program.builder().id().nameArabic("").nameEnglish("").hours().underRequirement().build());
-//        programs.add(Program.builder().id().nameArabic("").nameEnglish("").hours().underRequirement().build());
-//        programs.add(Program.builder().id().nameArabic("").nameEnglish("").hours().underRequirement().build());
-//        programs.add(Program.builder().id().nameArabic("").nameEnglish("").hours().underRequirement().build());
-//        programs.add(Program.builder().id().nameArabic("").nameEnglish("").hours().underRequirement().build());
-//        programs.add(Program.builder().id().nameArabic("").nameEnglish("").hours().underRequirement().build());
-//        programs.add(Program.builder().id().nameArabic("").nameEnglish("").hours().underRequirement().build());
-//        programs.add(Program.builder().id().nameArabic("").nameEnglish("").hours().underRequirement().build());
+//        programs.add(Program.builder().id(1L).nameArabic("متطلبات تاهيليه").nameEnglish("متطلبات تاهيليه").hours(0).build());
+//        programs.add(Program.builder().id(2L).nameArabic("متطلبات جامعه").nameEnglish("متطلبات جامعه").hours(12).build());
+//        programs.add(Program.builder().id(3L).nameArabic("متطلبات الكليه").nameEnglish("متطلبات الكليه").hours(63).build());
+//        programs.add(Program.builder().id(4L).nameArabic("متطلبات تخصص").nameEnglish("متطلبات تخصص").hours(61).build());
+//        programs.add(Program.builder().id(5L).nameArabic("متطلبات جامعه اجباريه").nameEnglish("متطلبات جامعه اجباريه").hours(6).underRequirement(programRepository.getOne(2L)).build());
+//        programs.add(Program.builder().id(6L).nameArabic("متطلبات جامعه اختياريه").nameEnglish("متطلبات جامعه اختياريه").hours(6).underRequirement(programRepository.getOne(2L)).build());
+//        programs.add(Program.builder().id(7L).nameArabic("رياضيات وعلوم اساسيه اجباريه").nameEnglish("رياضيات وعلوم اساسيه اجباريه").hours(21).underRequirement(programRepository.getOne(3L)).build());
+//        programs.add(Program.builder().id(8L).nameArabic("علوم حاسب اساسيه").nameEnglish("علوم حاسب اساسيه").hours(42).underRequirement(programRepository.getOne(3L)).build());
+//        programs.add(Program.builder().id(9L).nameArabic("علوم تطبيقية").nameEnglish("علوم تطبيقية").hours(45).underRequirement(programRepository.getOne(4L)).build());
+//        programs.add(Program.builder().id(10L).nameArabic("تدريب ميدانى").nameEnglish("تدريب ميدانى").hours(2).underRequirement(programRepository.getOne(4L)).build());
+//        programs.add(Program.builder().id(11L).nameArabic("مشروع").nameEnglish("مشروع").hours(6).underRequirement(programRepository.getOne(4L)).build());
+//        programs.add(Program.builder().id(12L).nameArabic("موضوعات تحددها المؤسسه").nameEnglish("موضوعات تحددها المؤسسه").hours(8).underRequirement(programRepository.getOne(4L)).build());
 //        return programs;
 //    }
 //
@@ -353,10 +344,32 @@
 //
 //    StudentListDTO studentListDTO(){
 //        StudentListDTO studentListDTO=new StudentListDTO(new ArrayList<>());
-//        studentListDTO.getStudents().add(StudentDTO.builder().id().nameArabic().nameEnglish().nationality().gender()
-//                .religion().DOB().nationalId().guardianName().email().secSchool().preQualfication().degrees()
-//                .studentInfo().user().guide().department().city().build());
+//        studentListDTO.getStudents().add(StudentDTO.builder().nameArabic("مصطفى خالد").nameEnglish("Mustafa Khaled").nationality("مصرى").gender("ذكر")
+//                .religion("مسلم").DOB(new Date()).nationalId("123456789").guardianName("خالد ابراهيم").email("asdxasd012@gmail.com").secSchool("الثانوى العام").preQualfication("علمى رياضه").degrees(152)
+//                .studentInfo(1L).user(1L).guide(1L).department(1L).city(31755L).build());
 //        return studentListDTO;
+//    }
+//
+//    StudentInfoListDTO studentInfoListDTO(){
+//        StudentInfoListDTO studentInfoListDTO= new StudentInfoListDTO(new ArrayList<>());
+//        studentInfoListDTO.getStudentInfos().add(StudentInfoDTO.builder().gpa2Cnt(0).build());
+//
+//        return studentInfoListDTO;
+//    }
+//
+//    TeachingStaffListDTO teachingStaffListDTO(){
+//        TeachingStaffListDTO teachingStaffListDTO=new TeachingStaffListDTO(new ArrayList<>());
+//
+//        teachingStaffListDTO.getTeachingStaffs().add(TeachingStaffDTO.builder().nameArabic("ا-د-عربى كشك").nameEnglish("Arabi keshk").build());
+//
+//        return teachingStaffListDTO;
+//    }
+//
+//    UserListDTO userListDTO(){
+//        UserListDTO userListDTO=new UserListDTO(new ArrayList<>());
+//        userListDTO.getUsers().add(UserDTO.builder().name("Mustafa").username("ADMIN").email("admin@fci.com").password("admin").build());
+//        return userListDTO;
+//
 //    }
 //
 //

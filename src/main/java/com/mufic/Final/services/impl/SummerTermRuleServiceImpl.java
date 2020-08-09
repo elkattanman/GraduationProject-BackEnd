@@ -4,6 +4,8 @@ import com.mufic.Final.api.v2.mapper.SummerTermRulesMapper;
 import com.mufic.Final.api.v2.model.SummerTermRulesDTO;
 import com.mufic.Final.api.v2.model.lists.SummerTermRulesListDTO;
 import com.mufic.Final.controllers.v2.StateController;
+import com.mufic.Final.domain.Program;
+import com.mufic.Final.domain.SummerTermRules;
 import com.mufic.Final.repositories.SummerTermRulesRepository;
 import com.mufic.Final.services.ResourceNotFoundException;
 import com.mufic.Final.services.SummerTermRuleService;
@@ -49,12 +51,25 @@ public class  SummerTermRuleServiceImpl implements SummerTermRuleService {
 
     @Override
     public SummerTermRulesDTO createNew(SummerTermRulesDTO summerTermRulesDTO) {
-        return null;
+        SummerTermRules summerTermRules=summerTermRulesMapper.dtoToObj(summerTermRulesDTO);
+        return saveAndReturnDTO(summerTermRules);
+    }
+
+    private SummerTermRulesDTO saveAndReturnDTO(SummerTermRules summerTermRules) {
+        SummerTermRules saved = summerTermRulesRepository.save(summerTermRules);
+
+        SummerTermRulesDTO returnDto= summerTermRulesMapper.objToDTO(saved);
+
+        returnDto.setSummerTermRuleUrl(getUrl(saved.getId()));
+
+        return returnDto;
     }
 
     @Override
     public SummerTermRulesDTO saveByDTO(Long id, SummerTermRulesDTO summerTermRulesDTO) {
-        return null;
+        SummerTermRules toSave = summerTermRulesMapper.dtoToObj(summerTermRulesDTO);
+        toSave.setId(id);
+        return saveAndReturnDTO(toSave);
     }
 
     @Override
@@ -64,7 +79,7 @@ public class  SummerTermRuleServiceImpl implements SummerTermRuleService {
 
     @Override
     public void deleteById(Long id) {
-
+        summerTermRulesRepository.deleteById(id);
     }
 
     private String getUrl(long id) {

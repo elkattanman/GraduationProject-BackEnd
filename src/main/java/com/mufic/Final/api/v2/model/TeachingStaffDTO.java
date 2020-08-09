@@ -1,9 +1,13 @@
 package com.mufic.Final.api.v2.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class TeachingStaffDTO{
 
     private Long id;

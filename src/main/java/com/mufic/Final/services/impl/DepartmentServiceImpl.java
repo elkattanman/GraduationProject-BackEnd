@@ -3,8 +3,9 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.DepartmentMapper;
 import com.mufic.Final.api.v2.model.DepartmentDTO;
 import com.mufic.Final.api.v2.model.lists.DepartmentListDTO;
-import com.mufic.Final.controllers.v2.CityController;
 import com.mufic.Final.controllers.v2.DepartmentController;
+import com.mufic.Final.domain.Course;
+import com.mufic.Final.domain.Department;
 import com.mufic.Final.repositories.DepartmentRepository;
 import com.mufic.Final.services.DepartmentService;
 import com.mufic.Final.services.ResourceNotFoundException;
@@ -50,12 +51,25 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public DepartmentDTO createNew(DepartmentDTO departmentDTO) {
-        return null;
+        Department department=departmentMapper.dtoToObj(departmentDTO);
+        return saveAndReturnDTO(department);
+    }
+
+    private DepartmentDTO saveAndReturnDTO(Department department) {
+        Department saved = departmentRepository.save(department);
+
+        DepartmentDTO returnDto= departmentMapper.departmentToDepartmentDTO(saved);
+
+        returnDto.setDepartmentUrl(getUrl(saved.getId()));
+
+        return returnDto;
     }
 
     @Override
     public DepartmentDTO saveByDTO(Long id, DepartmentDTO departmentDTO) {
-        return null;
+        Department toSave = departmentMapper.dtoToObj(departmentDTO);
+        toSave.setId(id);
+        return saveAndReturnDTO(toSave);
     }
 
     @Override
@@ -65,7 +79,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void deleteById(Long id) {
-
+        departmentRepository.deleteById(id);
     }
 
     private String getUrl(long id) {

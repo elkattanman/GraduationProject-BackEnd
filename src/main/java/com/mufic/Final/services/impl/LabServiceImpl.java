@@ -3,8 +3,9 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.LabMapper;
 import com.mufic.Final.api.v2.model.LabDTO;
 import com.mufic.Final.api.v2.model.lists.LabListDTO;
-import com.mufic.Final.controllers.v2.CityController;
 import com.mufic.Final.controllers.v2.LabController;
+import com.mufic.Final.domain.Department;
+import com.mufic.Final.domain.Labs;
 import com.mufic.Final.repositories.LabRepository;
 import com.mufic.Final.services.LabService;
 import com.mufic.Final.services.ResourceNotFoundException;
@@ -49,22 +50,35 @@ public class LabServiceImpl implements LabService {
 
     @Override
     public LabDTO createNew(LabDTO labDTO) {
-        return null;
+        Labs labs=labMapper.DtoToObj(labDTO);
+        return saveAndReturnDTO(labs);
+    }
+
+    private LabDTO saveAndReturnDTO(Labs labs ) {
+        Labs saved = labRepository.save(labs);
+
+        LabDTO returnDto= labMapper.objToDTO(saved);
+
+        returnDto.setLabUrl(getUrl(saved.getId()));
+
+        return returnDto;
     }
 
     @Override
-    public LabDTO saveByDTO(Long id, LabDTO vendorDTO) {
-        return null;
+    public LabDTO saveByDTO(Long id, LabDTO labDTO) {
+        Labs toSave = labMapper.DtoToObj(labDTO);
+        toSave.setId(id);
+        return saveAndReturnDTO(toSave);
     }
 
     @Override
-    public LabDTO patch(Long id, LabDTO vendorDTO) {
+    public LabDTO patch(Long id, LabDTO labDTO) {
         return null;
     }
 
     @Override
     public void deleteById(Long id) {
-
+        labRepository.deleteById(id);
     }
 
     private String getUrl(long id) {
