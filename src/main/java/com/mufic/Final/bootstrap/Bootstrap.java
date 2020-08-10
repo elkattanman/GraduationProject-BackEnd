@@ -687,12 +687,12 @@ public class Bootstrap implements CommandLineRunner {
 
         if(userRepository.findAll().size()==0)userListDTO().getUsers().stream().map(userService::createNew);
 
-        if(programRepository.findAll().size()==0) {
-            programRepository.saveAll(programs());
-        }
-        if(courseService.getAll().getCourses().size()==0){
-            courseListDTO().getCourses().forEach(courseService::createNew);
-        }
+//        if(programRepository.findAll().size()==0) {
+//            programRepository.saveAll(programs());
+//        }
+//        if(courseService.getAll().getCourses().size()==0){
+//            courseListDTO().getCourses().forEach(courseService::createNew);
+//        }
 
 
 
