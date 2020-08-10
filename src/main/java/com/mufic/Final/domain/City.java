@@ -15,9 +15,11 @@ import java.util.List;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "cities")
-public class City extends BaseEntity{
+public class City /*extends BaseEntity*/{
 
-
+    @Id
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "name")
     String name;
@@ -65,7 +67,7 @@ public class City extends BaseEntity{
 
     @Builder
     public City(Long id,String name, State state, String stateCode, Country country, String countryCode, double latitude, double longitude, Date createdAt, Date updatedOn, boolean flag, String wikiDataId, List<TeachingStaff> teachingStaffs, List<Student> studentInfos) {
-        super(id);
+        this.id=id;
         this.name = name;
         this.state = state;
         this.stateCode = stateCode;

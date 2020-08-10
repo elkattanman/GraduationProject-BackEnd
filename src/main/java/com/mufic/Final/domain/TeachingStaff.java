@@ -19,37 +19,11 @@ import java.util.List;
 @Table(name="Teaching_staff")
 public class TeachingStaff extends BaseEntity{
 
-//    @Builder
-/*    public TeachingStaff(Long id,String nameEnglish, String nameArabic, byte[] img, String nationality, Gender gender,
-                         String religion, Date DOB, String nationalId, String email, String phdDegree, User user,
-                         City city, Date createTime, Date updateTime) {
-        super(id);
-        this.nameEnglish = nameEnglish;
-        this.nameArabic = nameArabic;
-        this.img = img;
-        this.nationality = nationality;
-        this.gender = gender;
-        this.religion = religion;
-        this.DOB = DOB;
-        this.nationalId = nationalId;
-        this.email = email;
-        this.phdDegree = phdDegree;
-        this.user = user;
-        this.city = city;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-    }*/
-
-
     @Column(name = "name_english")
     private String nameEnglish;
 
     @Column(name = "name_arabic")
     private String nameArabic;
-
-    @Lob
-    @Column(name = "img")
-    private byte[] img;
 
     @Column(name = "nationality")
     String nationality;

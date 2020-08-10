@@ -5,14 +5,14 @@ import com.mufic.Final.api.v2.model.*;
 import com.mufic.Final.api.v2.model.lists.*;
 import com.mufic.Final.domain.*;
 import com.mufic.Final.repositories.*;
-import com.mufic.Final.services.CourseService;
-import com.mufic.Final.services.UserService;
+import com.mufic.Final.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 
@@ -24,26 +24,33 @@ public class Bootstrap implements CommandLineRunner {
     @Autowired private StateRepository stateRepository;
     @Autowired private CountryRepository countryRepository;
     @Autowired private ProgramRepository programRepository;
-    @Autowired private StudentInfoRepository studentInfoRepository;
+    @Autowired private ProgramLevelRepository programLevelRepository;
+    @Autowired private PointSystemRepository pointSystemRepository;
+    @Autowired private PrivilegeRepository privilegeRepository;
+    @Autowired private RegularTermRuleRepository regularTermRuleRepository;
+    @Autowired private SummerTermRulesRepository summerTermRulesRepository;
+    @Autowired private DepartmentService departmentService;
+    @Autowired private StudentInfoService studentInfoService;
+    @Autowired private StudentService studentService;
     @Autowired private CourseService courseService;
-    @Autowired private CourseMapper courseMapper;
-    @Autowired private UserRepository userRepository;
     @Autowired private RoleRepository roleRepository;
     @Autowired private UserService userService;
+    @Autowired private TeachingStaffService teachingStaffService;
     @Autowired private PasswordEncoder encoder;
 
 
 
     private List<Country> countries() {
         List<Country> countries = new ArrayList<>();
-        countries.add(Country.builder().id(65L).name("Egypt").iso3("EGY").iso2("EG").phoneCode("20").capital("Cairo")
-                .currency("EGP").nativ("مصر").emoji("??").emojiU("U+1F1EA U+1F1EC").wikiDataId("Q79").build());
+        Country country = Country.builder().id(65L).name("Egypt").iso3("EGY").iso2("EG").phoneCode("20").capital("Cairo")
+                .currency("EGP").nativ("مصر").emoji("??").emojiU("U+1F1EA U+1F1EC").wikiDataId("Q79").build();
+        countries.add(country);
         return countries;
     }
 
     private List<State> states() {
         List<State> states = new ArrayList<>();
-        states.add(State.builder().id(3222L).name("Kafr el-Sheikh Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
+        states.add(State.builder().id(3222L).name("Kafr el-Sheikh Governorate").country(countryRepository.findById((long) 65).orElse(null)).countryCode("EG").build());
         states.add(State.builder().id(3223L).name("Cairo Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
         states.add(State.builder().id(3224L).name("Damietta Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
         states.add(State.builder().id(3225L).name("Aswan Governorate").country(countryRepository.getOne(65L)).countryCode("EG").build());
@@ -590,24 +597,25 @@ public class Bootstrap implements CommandLineRunner {
         return programLevels;
     }
 
-
     List<Program> programs() {
         List<Program> programs = new ArrayList<>();
         programs.add(Program.builder().id(1L).nameArabic("متطلبات تاهيليه").nameEnglish("متطلبات تاهيليه").hours(0).build());
-        programs.add(Program.builder().id(2L).nameArabic("متطلبات جامعه").nameEnglish("متطلبات جامعه").hours(12).build());
-        programs.add(Program.builder().id(3L).nameArabic("متطلبات الكليه").nameEnglish("متطلبات الكليه").hours(63).build());
-        programs.add(Program.builder().id(4L).nameArabic("متطلبات تخصص").nameEnglish("متطلبات تخصص").hours(61).build());
-        programs.add(Program.builder().id(5L).nameArabic("متطلبات جامعه اجباريه").nameEnglish("متطلبات جامعه اجباريه").hours(6).underRequirement(programRepository.getOne(2L)).build());
-        programs.add(Program.builder().id(6L).nameArabic("متطلبات جامعه اختياريه").nameEnglish("متطلبات جامعه اختياريه").hours(6).underRequirement(programRepository.getOne(2L)).build());
-        programs.add(Program.builder().id(7L).nameArabic("رياضيات وعلوم اساسيه اجباريه").nameEnglish("رياضيات وعلوم اساسيه اجباريه").hours(21).underRequirement(programRepository.getOne(3L)).build());
-        programs.add(Program.builder().id(8L).nameArabic("علوم حاسب اساسيه").nameEnglish("علوم حاسب اساسيه").hours(42).underRequirement(programRepository.getOne(3L)).build());
-        programs.add(Program.builder().id(9L).nameArabic("علوم تطبيقية").nameEnglish("علوم تطبيقية").hours(45).underRequirement(programRepository.getOne(4L)).build());
-        programs.add(Program.builder().id(10L).nameArabic("تدريب ميدانى").nameEnglish("تدريب ميدانى").hours(2).underRequirement(programRepository.getOne(4L)).build());
-        programs.add(Program.builder().id(11L).nameArabic("مشروع").nameEnglish("مشروع").hours(6).underRequirement(programRepository.getOne(4L)).build());
-        programs.add(Program.builder().id(12L).nameArabic("موضوعات تحددها المؤسسه").nameEnglish("موضوعات تحددها المؤسسه").hours(8).underRequirement(programRepository.getOne(4L)).build());
+        Program program2 = Program.builder().id(2L).nameArabic("متطلبات جامعه").nameEnglish("متطلبات جامعه").hours(12).build();
+        programs.add(program2);
+        Program program3 = Program.builder().id(3L).nameArabic("متطلبات الكليه").nameEnglish("متطلبات الكليه").hours(63).build();
+        programs.add(program3);
+        Program program4 = Program.builder().id(4L).nameArabic("متطلبات تخصص").nameEnglish("متطلبات تخصص").hours(61).build();
+        programs.add(program4);
+        programs.add(Program.builder().id(5L).nameArabic("متطلبات جامعه اجباريه").nameEnglish("متطلبات جامعه اجباريه").hours(6).underRequirement(program2).build());
+        programs.add(Program.builder().id(6L).nameArabic("متطلبات جامعه اختياريه").nameEnglish("متطلبات جامعه اختياريه").hours(6).underRequirement(program2).build());
+        programs.add(Program.builder().id(7L).nameArabic("رياضيات وعلوم اساسيه اجباريه").nameEnglish("رياضيات وعلوم اساسيه اجباريه").hours(21).underRequirement(program3).build());
+        programs.add(Program.builder().id(8L).nameArabic("علوم حاسب اساسيه").nameEnglish("علوم حاسب اساسيه").hours(42).underRequirement(program3).build());
+        programs.add(Program.builder().id(9L).nameArabic("علوم تطبيقية").nameEnglish("علوم تطبيقية").hours(45).underRequirement(program4).build());
+        programs.add(Program.builder().id(10L).nameArabic("تدريب ميدانى").nameEnglish("تدريب ميدانى").hours(2).underRequirement(program4).build());
+        programs.add(Program.builder().id(11L).nameArabic("مشروع").nameEnglish("مشروع").hours(6).underRequirement(program4).build());
+        programs.add(Program.builder().id(12L).nameArabic("موضوعات تحددها المؤسسه").nameEnglish("موضوعات تحددها المؤسسه").hours(8).underRequirement(program4).build());
         return programs;
     }
-
 
     List<RegularTermRules> regularTermRules() {
         List<RegularTermRules> regularTermRules = new ArrayList<>();
@@ -636,7 +644,7 @@ public class Bootstrap implements CommandLineRunner {
 
     StudentListDTO studentListDTO() {
         StudentListDTO studentListDTO = new StudentListDTO(new ArrayList<>());
-        studentListDTO.getStudents().add(StudentDTO.builder().nameArabic("مصطفى خالد").nameEnglish("Mustafa Khaled").nationality("مصرى").gender("ذكر")
+        studentListDTO.getStudents().add(StudentDTO.builder().nameArabic("مصطفى خالد").nameEnglish("Mustafa Khaled").nationality("مصرى").gender(Gender.male.name())
                 .religion("مسلم").DOB(new Date()).nationalId("123456789").guardianName("خالد ابراهيم").email("asdxasd012@gmail.com").secSchool("الثانوى العام").preQualfication("علمى رياضه").degrees(152)
                 .studentInfo(1L).user(1L).guide(1L).department(1L).city(31755L).build());
         return studentListDTO;
@@ -652,7 +660,8 @@ public class Bootstrap implements CommandLineRunner {
     TeachingStaffListDTO teachingStaffListDTO() {
         TeachingStaffListDTO teachingStaffListDTO = new TeachingStaffListDTO(new ArrayList<>());
 
-        teachingStaffListDTO.getTeachingStaffs().add(TeachingStaffDTO.builder().nameArabic("ا-د-عربى كشك").nameEnglish("Arabi keshk").build());
+        teachingStaffListDTO.getTeachingStaffs().add(TeachingStaffDTO.builder().nameArabic("ا-د-عربى كشك").nameEnglish("Prof-Dr-Arabi").nationality("مصرى").gender(Gender.male.name())
+                .religion("مسلم").DOB(new Date()).nationalId("123456789").email("asdxasd012@gmail.com").user(3L).city(31755L).phdDegree("Doctor").build());
 
         return teachingStaffListDTO;
     }
@@ -660,15 +669,15 @@ public class Bootstrap implements CommandLineRunner {
     UserListDTO userListDTO() {
         UserListDTO userListDTO = new UserListDTO(new ArrayList<>());
 
-        UserDTO admin = UserDTO.builder().name("Mustafa").username("admin").email("admin@fci.com").password("admin").roles(new HashSet<>()).build();
+        UserDTO admin = UserDTO.builder().name("Mustafa").username("admin").email("admin@fci.com").password(encoder.encode("admin")).enabled(true).roles(new HashSet<>()).build();
         admin.getRoles().add("ROLE_ADMIN");
         userListDTO.getUsers().add(admin);
 
-        UserDTO student = UserDTO.builder().name("AMR").username("student").email("student@fci.com").password("student").roles(new HashSet<>()).build();
-        admin.getRoles().add("ROLE_STUDENT");
+        UserDTO student = UserDTO.builder().name("AMR").username("student").email("student@fci.com").password(encoder.encode("student")).enabled(true).roles(new HashSet<>()).build();
+        student.getRoles().add("ROLE_STUDENT");
         userListDTO.getUsers().add(student);
 
-        UserDTO doctor = UserDTO.builder().name("AHMED").username("doctor").email("doctor@fci.com").password("doctor").roles(new HashSet<>()).build();
+        UserDTO doctor = UserDTO.builder().name("AHMED").username("doctor").email("doctor@fci.com").password(encoder.encode("doctor")).enabled(true).roles(new HashSet<>()).build();
         doctor.getRoles().add("ROLE_DOCTOR");
         userListDTO.getUsers().add(doctor);
 
@@ -678,25 +687,27 @@ public class Bootstrap implements CommandLineRunner {
     }
 
 
+    @Transactional
     @Override
     public void run(String... args) throws Exception {
 
-//        userRepository.deleteAll();
-//        roleRepository.deleteAll();
-        if(roleRepository.findAll().size()==0)roleRepository.saveAll(roles());
-
-        if(userRepository.findAll().size()==0)userListDTO().getUsers().stream().map(userService::createNew);
-
-//        if(programRepository.findAll().size()==0) {
-//            programRepository.saveAll(programs());
-//        }
-//        if(courseService.getAll().getCourses().size()==0){
-//            courseListDTO().getCourses().forEach(courseService::createNew);
-//        }
-
-
-
-
+        countryRepository.saveAll(countries());
+        countryRepository.flush();
+        stateRepository.saveAll(states());
+        cityRepository.saveAll(cities());
+        roleRepository.saveAll(roles());
+        userListDTO().getUsers().stream().forEach(userService::createNew);
+        programRepository.saveAll(programs());
+        courseListDTO().getCourses().forEach(courseService::createNew);
+        departmentListDTO().getDepartments().forEach(departmentService::createNew);
+        pointSystemRepository.saveAll(pointSystems());
+        privilegeRepository.saveAll(privileges());
+        programLevelRepository.saveAll(programLevels());
+        regularTermRuleRepository.saveAll(regularTermRules());
+        summerTermRulesRepository.saveAll(summerTermRules());
+        studentInfoListDTO().getStudentInfos().stream().map(studentInfoService::createNew);
+        studentListDTO().getStudents().stream().map(studentService::createNew);
+        teachingStaffListDTO().getTeachingStaffs().stream().forEach(teachingStaffService::createNew);
 
     }
 }

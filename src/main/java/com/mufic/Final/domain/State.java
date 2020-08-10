@@ -17,7 +17,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "states")
-public class State extends BaseEntity{
+public class State /*extends BaseEntity*/{
+
+    @Id
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "name")
     String name;
@@ -55,7 +59,7 @@ public class State extends BaseEntity{
 
     @Builder
     public State(Long id, String name, Country country, String countryCode, String fipsCode, String iso2, Date createdAt, Date updatedAt, boolean flag, String wikiDataId, List<City> cities) {
-        super(id);
+        this.id=id;
         this.name = name;
         this.country = country;
         this.countryCode = countryCode;

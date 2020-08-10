@@ -15,7 +15,12 @@ import java.util.List;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "countries")
-public class Country extends BaseEntity {
+public class Country /*extends BaseEntity */{
+
+    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    Long id;
 
     @Column(name = "name")
     private String name;
@@ -68,7 +73,7 @@ public class Country extends BaseEntity {
 
     @Builder
     public Country(Long id, String name, String iso3, String iso2, String phoneCode, String capital, String currency, String nativ, String emoji, String emojiU, Date createdAt, Date updatedAt, boolean flag, String wikiDataId, List<State> states, List<City> cities) {
-        super(id);
+        this.id=id;
         this.name = name;
         this.iso3 = iso3;
         this.iso2 = iso2;

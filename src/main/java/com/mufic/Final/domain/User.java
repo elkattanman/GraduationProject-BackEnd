@@ -20,20 +20,6 @@ import java.util.Set;
 @Table(name = "users")
 public class User extends BaseEntity{
 
-//    @Builder
-/*    public User(Long id, String name, String username, String email, String password, Date createTime, Date updateTime,
-                Set<Role> roles, TeachingStaff teachingStaff, StudentInfo studentInfo) {
-        super(id);
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.roles = roles;
-        this.teachingStaff = teachingStaff;
-        this.studentInfo = studentInfo;
-    }*/
     @Column(name = "name")
     private String name;
 

@@ -3,6 +3,8 @@ package com.mufic.Final.api.v2.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import java.util.Date;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -16,23 +18,23 @@ public class TeachingStaffDTO{
 
     private String nameArabic;
 
-    String nationality;
+    private String nationality;
 
-    String gender;
+    private String gender;
 
-    String religion;
+    private String religion;
 
-    String DOB;
+    private Date DOB;
 
-    String nationalId;
+    private String nationalId;
 
-    String email;
+    private String email;
 
-    String phdDegree;
+    private String phdDegree;
 
-    Long user;
+    private Long user;
 
-    int city;
+    private Long city;
 
     @JsonProperty("teachingstaff_url")
     private String teachingStaffUrl;
