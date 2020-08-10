@@ -30,9 +30,9 @@ public class Program extends BaseEntity {
     @JoinColumn(name = "under_requirement")
     Program underRequirement;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "underRequirement")
-    List<Program> childern;
+//    @OneToMany(cascade = CascadeType.ALL,
+//            mappedBy = "underRequirement")
+//    List<Program> childern;
 
     @OneToMany(cascade = CascadeType.ALL,
                 mappedBy = "program")
@@ -48,13 +48,14 @@ public class Program extends BaseEntity {
 
 
     @Builder
-    public Program(Long id, String nameEnglish, String nameArabic, int hours, Program underRequirement, List<Program> childern, List<Course> courses, Date createTime, Date updateTime) {
+    public Program(Long id, String nameEnglish, String nameArabic, int hours, Program underRequirement,
+            /*List<Program> childern,*/ List<Course> courses, Date createTime, Date updateTime) {
         super(id);
         this.nameEnglish = nameEnglish;
         this.nameArabic = nameArabic;
         this.hours = hours;
         this.underRequirement = underRequirement;
-        this.childern = childern;
+//        this.childern = childern;
         this.courses = courses;
         this.createTime = createTime;
         this.updateTime = updateTime;
