@@ -52,7 +52,7 @@ public class CourseServiceImpl implements CourseService {
     public CourseDTO createNew(CourseDTO courseDTO) {
 
         Course course=courseMapper.CourseDtoTocourse(courseDTO);
-        log.info(course.toString());
+//        log.info(course.toString());
         return saveAndReturnDTO(course);
 //        return null;
     }

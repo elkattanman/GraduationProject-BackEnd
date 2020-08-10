@@ -41,10 +41,11 @@ public abstract class CourseMapper {
     }
 
     protected Program Toprogram(Long id){
-        return programRepository.findById(id).get();
+        return programRepository.findById(id).orElse(null);
     }
 
     protected Course toCourse(String code){
-        return courseRepository.findById(code).get();
+//        if(code==null || code.equals("")) return null;
+        return courseRepository.findById(code).orElse( null);
     }
 }
