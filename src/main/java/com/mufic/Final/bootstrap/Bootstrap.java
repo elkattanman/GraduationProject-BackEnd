@@ -6,13 +6,14 @@ import com.mufic.Final.api.v2.model.lists.*;
 import com.mufic.Final.domain.*;
 import com.mufic.Final.repositories.*;
 import com.mufic.Final.services.CourseService;
+import com.mufic.Final.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 @Slf4j
@@ -26,6 +27,11 @@ public class Bootstrap implements CommandLineRunner {
     @Autowired private StudentInfoRepository studentInfoRepository;
     @Autowired private CourseService courseService;
     @Autowired private CourseMapper courseMapper;
+    @Autowired private UserRepository userRepository;
+    @Autowired private RoleRepository roleRepository;
+    @Autowired private UserService userService;
+    @Autowired private PasswordEncoder encoder;
+
 
 
     private List<Country> countries() {
@@ -622,8 +628,8 @@ public class Bootstrap implements CommandLineRunner {
     List<Role> roles() {
         List<Role> roles = new ArrayList<>();
         roles.add(Role.builder().name(ERole.ROLE_ADMIN).description("Administrator ").privileges(new ArrayList<>()).build());
-        roles.add(Role.builder().name(ERole.ROLE_STUDENT).description("Administrator ").privileges(new ArrayList<>()).build());
-        roles.add(Role.builder().name(ERole.ROLE_DOCTOR).description("Administrator ").privileges(new ArrayList<>()).build());
+        roles.add(Role.builder().name(ERole.ROLE_STUDENT).description("STUDENT ").privileges(new ArrayList<>()).build());
+        roles.add(Role.builder().name(ERole.ROLE_DOCTOR).description("DOCTOR ").privileges(new ArrayList<>()).build());
         roles.add(Role.builder().name(ERole.ROLE_USER).description("Administrator ").privileges(new ArrayList<>()).build());
         return roles;
     }
@@ -653,7 +659,20 @@ public class Bootstrap implements CommandLineRunner {
 
     UserListDTO userListDTO() {
         UserListDTO userListDTO = new UserListDTO(new ArrayList<>());
-        userListDTO.getUsers().add(UserDTO.builder().name("Mustafa").username("ADMIN").email("admin@fci.com").password("admin").build());
+
+        UserDTO admin = UserDTO.builder().name("Mustafa").username("admin").email("admin@fci.com").password("admin").roles(new HashSet<>()).build();
+        admin.getRoles().add("ROLE_ADMIN");
+        userListDTO.getUsers().add(admin);
+
+        UserDTO student = UserDTO.builder().name("AMR").username("student").email("student@fci.com").password("student").roles(new HashSet<>()).build();
+        admin.getRoles().add("ROLE_STUDENT");
+        userListDTO.getUsers().add(student);
+
+        UserDTO doctor = UserDTO.builder().name("AHMED").username("doctor").email("doctor@fci.com").password("doctor").roles(new HashSet<>()).build();
+        doctor.getRoles().add("ROLE_DOCTOR");
+        userListDTO.getUsers().add(doctor);
+
+
         return userListDTO;
 
     }
@@ -662,12 +681,22 @@ public class Bootstrap implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        roleRepository.deleteAll();
+        roleRepository.saveAll(roles());
+
+        userRepository.deleteAll();
+        userListDTO().getUsers().stream().map(userService::createNew);
+
         if(programRepository.findAll().size()==0) {
             programRepository.saveAll(programs());
         }
         if(courseService.getAll().getCourses().size()==0){
             courseListDTO().getCourses().forEach(courseService::createNew);
         }
+
+
+
+
 
     }
 }

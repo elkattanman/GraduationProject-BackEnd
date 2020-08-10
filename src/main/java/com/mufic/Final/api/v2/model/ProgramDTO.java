@@ -19,7 +19,7 @@ public class ProgramDTO {
 
     int underRequirement;
 
-    List<String> courses;
+//    List<String> courses;
 
     @JsonProperty("program_url")
     private String programUrl;

@@ -29,20 +29,20 @@ public abstract class ProgramMapper {
 
 
     public abstract Program dtoToObj(ProgramDTO programDTO);
-
-    @IterableMapping(elementTargetType = String.class)
-    protected abstract List<String> maplistToString(List<Course> list);
-
-    @IterableMapping(elementTargetType = Course.class)
-    protected abstract List<Course> toCourses(List<String> list);
-
-    protected String mapToString(Course course){
-        return course.getCode();
-    }
-
-    protected Course mapToCourse(String code){
-        return courseRepository.getOne(code);
-    }
+//
+//    @IterableMapping(elementTargetType = String.class)
+//    protected abstract List<String> maplistToString(List<Course> list);
+//
+//    @IterableMapping(elementTargetType = Course.class)
+//    protected abstract List<Course> toCourses(List<String> list);
+//
+//    protected String mapToString(Course course){
+//        return course.getCode();
+//    }
+//
+//    protected Course mapToCourse(String code){
+//        return courseRepository.getOne(code);
+//    }
 
     public Program toProgram(Long id){
         return programRepository.getOne(id);
