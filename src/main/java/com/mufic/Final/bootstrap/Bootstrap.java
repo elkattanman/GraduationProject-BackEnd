@@ -681,11 +681,11 @@ public class Bootstrap implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        roleRepository.deleteAll();
-        roleRepository.saveAll(roles());
+//        userRepository.deleteAll();
+//        roleRepository.deleteAll();
+        if(roleRepository.findAll().size()==0)roleRepository.saveAll(roles());
 
-        userRepository.deleteAll();
-        userListDTO().getUsers().stream().map(userService::createNew);
+        if(userRepository.findAll().size()==0)userListDTO().getUsers().stream().map(userService::createNew);
 
         if(programRepository.findAll().size()==0) {
             programRepository.saveAll(programs());
