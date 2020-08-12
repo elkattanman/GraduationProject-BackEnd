@@ -647,8 +647,18 @@ public class Bootstrap implements CommandLineRunner {
         studentListDTO.getStudents().add(StudentDTO.builder().nameArabic("مصطفى خالد").nameEnglish("Mustafa Khaled").nationality("مصرى").gender(Gender.male.name())
                 .religion("مسلم").DOB(new Date()).nationalId("123456789").guardianName("خالد ابراهيم").email("asdxasd012@gmail.com").secSchool("الثانوى العام").preQualfication("علمى رياضه").degrees(152)
                 .studentInfo(1L).user(1L).guide(1L).department(1L).city(31755L).build());
+        studentListDTO.getStudents().add(StudentDTO.builder().nameArabic("عمرو مجدي").nameEnglish("Amr magdy").nationality("مصرى").gender(Gender.male.name())
+                .religion("مسلم").DOB(new Date()).nationalId("123476789").guardianName("مجدي محمد").email("amrd012@gmail.com").secSchool("الثانوى العام").preQualfication("علمى رياضه").degrees(252)
+                .studentInfo(1L).user(2L).guide(1L).department(1L).city(31756L).build());
+        studentListDTO.getStudents().add(StudentDTO.builder().nameArabic("احمد محمد زغلوال").nameEnglish("Ahmed mohamed").nationality("مصرى").gender(Gender.male.name())
+                .religion("مسلم").DOB(new Date()).nationalId("123476778").guardianName("محمد زغلول").email("ahmed012@gmail.com").secSchool("الثانوى العام").preQualfication("علمى رياضه").degrees(352)
+                .studentInfo(1L).user(3L).guide(1L).department(1L).city(31756L).build());
+        studentListDTO.getStudents().add(StudentDTO.builder().nameArabic("وليد عطيه عبدالحميد").nameEnglish("Walid Atia").nationality("مصرى").gender(Gender.male.name())
+                .religion("مسلم").DOB(new Date()).nationalId("52347378").guardianName("عطيه عبد الحميد").email("walid012@gmail.com").secSchool("الثانوى العام").preQualfication("علمى رياضه").degrees(352)
+                .studentInfo(1L).user(3L).guide(1L).department(1L).city(31756L).build());
         return studentListDTO;
     }
+
 
     StudentInfoListDTO studentInfoListDTO() {
         StudentInfoListDTO studentInfoListDTO = new StudentInfoListDTO(new ArrayList<>());
@@ -696,7 +706,7 @@ public class Bootstrap implements CommandLineRunner {
         stateRepository.saveAll(states());
         cityRepository.saveAll(cities());
         roleRepository.saveAll(roles());
-        userListDTO().getUsers().stream().forEach(userService::createNew);
+        userListDTO().getUsers().forEach(userService::createNew);
         programRepository.saveAll(programs());
         courseListDTO().getCourses().forEach(courseService::createNew);
         departmentListDTO().getDepartments().forEach(departmentService::createNew);
@@ -705,9 +715,9 @@ public class Bootstrap implements CommandLineRunner {
         programLevelRepository.saveAll(programLevels());
         regularTermRuleRepository.saveAll(regularTermRules());
         summerTermRulesRepository.saveAll(summerTermRules());
-        studentInfoListDTO().getStudentInfos().stream().map(studentInfoService::createNew);
-        studentListDTO().getStudents().stream().map(studentService::createNew);
-        teachingStaffListDTO().getTeachingStaffs().stream().forEach(teachingStaffService::createNew);
+        studentInfoListDTO().getStudentInfos().stream().forEach(studentInfoService::createNew);
+        teachingStaffListDTO().getTeachingStaffs().forEach(teachingStaffService::createNew);
+        studentListDTO().getStudents().forEach(studentService::createNew);
 
     }
 }

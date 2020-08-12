@@ -38,7 +38,7 @@ public abstract class StudentMapper {
     public abstract Student dtoToObj(StudentDTO studentDTO);
 
     public TeachingStaff convertToGuide(Long id){
-        return teachingStaffRepository.getOne(id);
+        return teachingStaffRepository.findById(id).orElse(null);
     }
     public User convertToUser(Long id){
         return userRepository.getOne(id);
