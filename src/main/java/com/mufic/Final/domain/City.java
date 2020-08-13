@@ -58,10 +58,10 @@ public class City /*extends BaseEntity*/{
     @Column(name = "wikidataid")
     String wikiDataId;
 
-    @OneToMany(mappedBy = "city")
+    @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
     List<TeachingStaff> teachingStaffs;
 
-    @OneToMany(mappedBy = "city")
+    @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
     List<Student> studentInfos;
 
 

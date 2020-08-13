@@ -64,11 +64,11 @@ public class Country /*extends BaseEntity */{
     private String wikiDataId;
 
     @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "country")
+            mappedBy = "country", fetch = FetchType.LAZY)
     private List<State> states=new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "country")
+            mappedBy = "country", fetch = FetchType.LAZY)
     private List<City> cities=new ArrayList<>();
 
     @Builder

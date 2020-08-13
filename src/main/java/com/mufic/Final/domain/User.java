@@ -47,16 +47,16 @@ public class User extends BaseEntity{
     @Column(name = "update_time")
     private Date updateTime;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "users_has_roles",
         joinColumns = @JoinColumn(name="users_id"),
         inverseJoinColumns = @JoinColumn(name="roles_id"))
     private Set<Role> roles;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     TeachingStaff teachingStaff;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     Student student;
 
 

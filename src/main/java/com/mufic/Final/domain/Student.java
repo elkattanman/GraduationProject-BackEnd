@@ -66,23 +66,23 @@ public class Student extends BaseEntity {
     @Column(name="degrees")
     double degrees;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="guide_id")
     TeachingStaff guide;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     Department department;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
     City city;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_info_id")
     StudentInfo studentInfo;
 
@@ -95,10 +95,10 @@ public class Student extends BaseEntity {
     @Column(name = "update_time")
     private Date updateTime;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
     List<StudentHasCourseInTerm> studentHasCourseInTerms;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
     List<Transaction> transactions;
 
 
