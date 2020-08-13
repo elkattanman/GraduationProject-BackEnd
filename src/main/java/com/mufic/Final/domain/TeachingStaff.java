@@ -48,7 +48,7 @@ public class TeachingStaff extends BaseEntity{
     @Column(name = "PHD_degree")
     String phdDegree;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id")
     User user;
 
@@ -65,13 +65,13 @@ public class TeachingStaff extends BaseEntity{
     @Column(name = "update_time")
     private Date updateTime;
 
-    @OneToMany(mappedBy = "instructor")
+    @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY)
     List<CourseInTerm> courseInTermList;
 
-    @OneToMany(mappedBy = "teachingStaff")
+    @OneToMany(mappedBy = "teachingStaff", fetch = FetchType.LAZY)
     List<Labs> labs;
 
-    @OneToMany(mappedBy ="guide")
+    @OneToMany(mappedBy ="guide", fetch = FetchType.LAZY)
     List<Student> students;
 
 }

@@ -47,7 +47,7 @@ public class User extends BaseEntity{
     @Column(name = "update_time")
     private Date updateTime;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
     @JoinTable(name = "users_has_roles",
         joinColumns = @JoinColumn(name="users_id"),
         inverseJoinColumns = @JoinColumn(name="roles_id"))
