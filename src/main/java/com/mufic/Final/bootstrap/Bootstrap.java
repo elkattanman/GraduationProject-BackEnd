@@ -38,6 +38,7 @@ public class Bootstrap implements CommandLineRunner {
     @Autowired private UserService userService;
     @Autowired private TeachingStaffService teachingStaffService;
     @Autowired private CourseInTermService courseInTermService;
+    @Autowired private LabService labService;
     @Autowired private PasswordEncoder encoder;
 
 
@@ -822,6 +823,24 @@ public class Bootstrap implements CommandLineRunner {
         return courseInTermListDTO;
     }
 
+    LabListDTO labs(){
+        LabListDTO labListDTO=new LabListDTO(new ArrayList<>());
+
+        LabDTO labDTO01 = LabDTO.builder().courseInTerm(1L).labDay(Day.SUNDAY.name()).labTime(1).maxStudent(40).teachingStaff(1L).build();
+        LabDTO labDTO02 = LabDTO.builder().courseInTerm(2L).labDay(Day.SUNDAY.name()).labTime(1).maxStudent(40).teachingStaff(1L).build();
+        LabDTO labDTO03 = LabDTO.builder().courseInTerm(3L).labDay(Day.SUNDAY.name()).labTime(1).maxStudent(40).teachingStaff(1L).build();
+        LabDTO labDTO04 = LabDTO.builder().courseInTerm(4L).labDay(Day.SUNDAY.name()).labTime(1).maxStudent(40).teachingStaff(1L).build();
+        LabDTO labDTO05 = LabDTO.builder().courseInTerm(5L).labDay(Day.SUNDAY.name()).labTime(1).maxStudent(40).teachingStaff(1L).build();
+        LabDTO labDTO06 = LabDTO.builder().courseInTerm(6L).labDay(Day.SUNDAY.name()).labTime(1).maxStudent(40).teachingStaff(1L).build();
+        LabDTO labDTO07 = LabDTO.builder().courseInTerm(6L).labDay(Day.MONDAY.name()).labTime(1).maxStudent(40).teachingStaff(1L).build();
+        LabDTO labDTO08 = LabDTO.builder().courseInTerm(7L).labDay(Day.SUNDAY.name()).labTime(1).maxStudent(40).teachingStaff(1L).build();
+        LabDTO labDTO09 = LabDTO.builder().courseInTerm(8L).labDay(Day.SUNDAY.name()).labTime(1).maxStudent(40).teachingStaff(1L).build();
+        LabDTO labDTO10 = LabDTO.builder().courseInTerm(9L).labDay(Day.SUNDAY.name()).labTime(1).maxStudent(40).teachingStaff(1L).build();
+
+        labListDTO.getLabs().addAll(Arrays.asList(labDTO01, labDTO02, labDTO03, labDTO04, labDTO05, labDTO06, labDTO07, labDTO08, labDTO09, labDTO10));
+
+        return labListDTO;
+    }
 
     @Transactional
     @Override
@@ -846,6 +865,7 @@ public class Bootstrap implements CommandLineRunner {
         studentListDTO().getStudents().forEach(studentService::createNew);
         termRepository.saveAll(terms());
         courseInTermListDTO().getCourseInTerms().forEach(courseInTermService::createNew);
+        labs().getLabs().forEach(labService::createNew);
 
     }
 }
