@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -33,44 +34,44 @@ public class Term extends BaseEntity {
     private TermType termType;
 
     @Column(name = "start_at")
-    @Temporal(TemporalType.DATE)
-    private Date start;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate start;
 
     @Column(name = "end_at")
-    @Temporal(TemporalType.DATE)
-    private Date end;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate end;
 
     @Column(name = "start_registration")
-    @Temporal(TemporalType.DATE)
-    private Date startRegistration;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate startRegistration;
 
     @Column(name = "end_registration")
-    @Temporal(TemporalType.DATE)
-    private Date endRegistration;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate endRegistration;
 
     @Column(name = "start_updating")
-    @Temporal(TemporalType.DATE)
-    private Date startUpdating;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate startUpdating;
 
     @Column(name = "end_updating")
-    @Temporal(TemporalType.DATE)
-    private Date endUpdating;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate endUpdating;
 
     @Column(name = "start_withdrawn")
-    @Temporal(TemporalType.DATE)
-    private Date startWithdrawn;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate startWithdrawn;
 
     @Column(name = "end_withdrawn")
-    @Temporal(TemporalType.DATE)
-    private Date endWithdrawn;
+//    @Temporal(TemporalType.DATE)
+    private LocalDate endWithdrawn;
 
     @CreationTimestamp
     @Column(name = "create_time")
-    private Date createTime;
+    private LocalDate createTime;
 
     @UpdateTimestamp
     @Column(name = "update_time")
-    private Date updateTime;
+    private LocalDate updateTime;
 
     @OneToMany(mappedBy = "term")
     List<CourseInTerm> courseInTermList;

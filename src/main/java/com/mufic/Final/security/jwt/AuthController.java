@@ -64,10 +64,12 @@ public class AuthController {
 				.collect(Collectors.toList());
 
 		return ResponseEntity.ok(new JwtResponse(jwt,
-												 userDetails.getId(), 
-												 userDetails.getUsername(), 
-												 userDetails.getEmail(), 
-												 roles));
+				userDetails.getId(),
+				userDetails.getName(),
+				userDetails.getUsername(),
+				userDetails.getEmail(),
+				userDetails.getImg(),
+				roles));
 	}
 
 	@PostMapping("/signup")
@@ -104,12 +106,18 @@ public class AuthController {
 					roles.add(adminRole);
 
 					break;
-//				case "mod":
-//					Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-//							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-//					roles.add(modRole);
-//
-//					break;
+				case "student":
+					Role studentRole = roleRepository.findByName(ERole.ROLE_STUDENT)
+							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+					roles.add(studentRole);
+
+					break;
+				case "doctor":
+					Role doctorRole = roleRepository.findByName(ERole.ROLE_DOCTOR)
+							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+					roles.add(doctorRole);
+
+					break;
 				default:
 					Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));

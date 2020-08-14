@@ -41,6 +41,10 @@ public class UserPrincipal implements UserDetails {
         return user.getEmail();
     }
 
+    public String getName() { return  user.getName(); }
+
+    public byte[] getImg() { return user.getImg(); }
+
     @Override
     public String getPassword() {
         return user.getPassword();

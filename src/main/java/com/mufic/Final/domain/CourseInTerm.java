@@ -20,8 +20,6 @@ import java.util.List;
 @Table(name= "course_in_term")
 public class CourseInTerm extends BaseEntity{
 
-//    @EmbeddedId
-//    private CourseInTermId courseInTermId;
 
     @ManyToOne
     @JoinColumn(name = "Term_Id")

@@ -28,7 +28,7 @@ public class CourseDTO {
 
     private int force;
 
-    int program;
+    Long program;
 
     String preCourse;
 

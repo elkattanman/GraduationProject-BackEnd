@@ -53,11 +53,11 @@ public class User extends BaseEntity{
         inverseJoinColumns = @JoinColumn(name="roles_id"))
     private Set<Role> roles;
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-    TeachingStaff teachingStaff;
-
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-    Student student;
+//    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+//    TeachingStaff teachingStaff;
+//
+//    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+//    Student student;
 
 
 }

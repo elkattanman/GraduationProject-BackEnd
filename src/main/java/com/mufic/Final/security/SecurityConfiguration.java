@@ -94,7 +94,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 // configure access rules
-                .antMatchers("/api/auth/**","/h2-console/**").permitAll()
+                .antMatchers("/api/auth/**","/h2-console/**",
+                        "/v2/api-docs/**",
+                        "/swagger-ui.html/**",
+                        "/swagger-resources/**").permitAll()
 //                .antMatchers("/api/students/**").hasRole("USER")
 //                .antMatchers("/api/courses/**").hasRole("ADMIN")
 //                .antMatchers("/**").permitAll()

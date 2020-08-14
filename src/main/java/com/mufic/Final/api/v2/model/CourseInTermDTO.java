@@ -2,9 +2,13 @@ package com.mufic.Final.api.v2.model;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class CourseInTermDTO {
 
 
@@ -13,7 +17,7 @@ public class CourseInTermDTO {
 
     private String course;
 
-    private int instructor;
+    private Long instructor;
 
     private String lectureDay;
 

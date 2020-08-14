@@ -16,7 +16,7 @@ import java.util.Date;
 @ToString(callSuper = true)
 @Builder
 @Entity
-@Table(name = "department")
+@Table(name = "labs")
 public class Labs extends BaseEntity{
 
 

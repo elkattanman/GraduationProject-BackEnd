@@ -3,8 +3,9 @@ package com.mufic.Final.services.impl;
 import com.mufic.Final.api.v2.mapper.CourseInTermMapper;
 import com.mufic.Final.api.v2.model.CourseInTermDTO;
 import com.mufic.Final.api.v2.model.lists.CourseInTermListDTO;
-import com.mufic.Final.controllers.v2.CityController;
 import com.mufic.Final.controllers.v2.CourseInTermController;
+import com.mufic.Final.domain.Course;
+import com.mufic.Final.domain.CourseInTerm;
 import com.mufic.Final.repositories.CourseInTermRepository;
 import com.mufic.Final.services.CourseInTermService;
 import com.mufic.Final.services.ResourceNotFoundException;
@@ -50,13 +51,29 @@ public class  CourseInTermServiceImpl implements CourseInTermService {
 
     @Override
     public CourseInTermDTO createNew(CourseInTermDTO courseInTermDTO) {
-        return null;
+        CourseInTerm courseInTerm=courseInTermMapper.DtoToObj(courseInTermDTO);
+//        log.info(course.toString());
+        return saveAndReturnDTO(courseInTerm);
+//        return null;
     }
+
+    private CourseInTermDTO saveAndReturnDTO(CourseInTerm courseInTerm) {
+        CourseInTerm saved = courseInTermRepository.save(courseInTerm);
+
+        CourseInTermDTO returnDto= courseInTermMapper.courseInTermToCourseInTermDTO(saved);
+
+        returnDto.setCourseInTermUrl(getUrl(saved.getId()));
+
+        return returnDto;
+    }
+
 
     @Override
     public CourseInTermDTO saveByDTO(Long id, CourseInTermDTO courseInTermDTO) {
-        return null;
-    }
+        CourseInTerm toSave = courseInTermMapper.DtoToObj(courseInTermDTO);
+        toSave.setId(id);
+
+        return saveAndReturnDTO(toSave);    }
 
     @Override
     public CourseInTermDTO patch(Long id, CourseInTermDTO courseInTermDTO) {
@@ -65,7 +82,7 @@ public class  CourseInTermServiceImpl implements CourseInTermService {
 
     @Override
     public void deleteById(Long id) {
-
+        courseInTermRepository.deleteById(id);
     }
 
     private String getUrl(long id) {
