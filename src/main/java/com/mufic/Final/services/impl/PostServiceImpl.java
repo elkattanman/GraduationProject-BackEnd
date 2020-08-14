@@ -8,9 +8,11 @@ import com.mufic.Final.domain.Post;
 import com.mufic.Final.repositories.PostRepository;
 import com.mufic.Final.services.PostService;
 import com.mufic.Final.services.ResourceNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
+@Service
 public class PostServiceImpl implements PostService {
 
     private final PostMapper postMapper;

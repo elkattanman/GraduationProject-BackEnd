@@ -6,7 +6,8 @@ import com.mufic.Final.services.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@RestController(PostController.BASE_URL)
+@RestController
+@RequestMapping(PostController.BASE_URL)
 public class PostController {
     public static final String BASE_URL = "/api/v2/posts";
 

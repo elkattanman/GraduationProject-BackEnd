@@ -2,6 +2,8 @@ package com.mufic.Final.services;
 
 import com.mufic.Final.api.v2.model.PostDTO;
 import com.mufic.Final.api.v2.model.lists.PostListDTO;
+import org.springframework.stereotype.Service;
+
 
 public interface PostService {
 
